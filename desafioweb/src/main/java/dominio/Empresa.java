@@ -13,11 +13,11 @@ public class Empresa implements Serializable{
 	@Id
 	private String cnpj; 
 	
-	private String fantasia; 
+	private String nome_fantasia; 
 	private String cep;
-	private String lograd; 
-	private Integer num; 
-	private String compl; 
+	private String logradouro; 
+	private Integer numero; 
+	private String complemento; 
 	private String cidade;
 	private String bairro;
 	private String estado;
@@ -25,15 +25,15 @@ public class Empresa implements Serializable{
 	public Empresa() {
 	}
 
-	public Empresa(String cnpj, String fantasia, String cep, String lograd, Integer num, String compl, String cidade,
-			String bairro, String estado) {
+	public Empresa(String cnpj, String nome_fantasia, String cep, String logradouro, Integer numero, String complemento,
+			String cidade, String bairro, String estado) {
 		super();
 		this.cnpj = cnpj;
-		this.fantasia = fantasia;
+		this.nome_fantasia = nome_fantasia;
 		this.cep = cep;
-		this.lograd = lograd;
-		this.num = num;
-		this.compl = compl;
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.complemento = complemento;
 		this.cidade = cidade;
 		this.bairro = bairro;
 		this.estado = estado;
@@ -47,12 +47,12 @@ public class Empresa implements Serializable{
 		this.cnpj = cnpj;
 	}
 
-	public String getFantasia() {
-		return fantasia;
+	public String getNome_fantasia() {
+		return nome_fantasia;
 	}
 
-	public void setFantasia(String fantasia) {
-		this.fantasia = fantasia;
+	public void setNome_fantasia(String nome_fantasia) {
+		this.nome_fantasia = nome_fantasia;
 	}
 
 	public String getCep() {
@@ -63,28 +63,28 @@ public class Empresa implements Serializable{
 		this.cep = cep;
 	}
 
-	public String getLograd() {
-		return lograd;
+	public String getLogradouro() {
+		return logradouro;
 	}
 
-	public void setLograd(String lograd) {
-		this.lograd = lograd;
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
 
-	public Integer getNum() {
-		return num;
+	public Integer getNumero() {
+		return numero;
 	}
 
-	public void setNum(Integer num) {
-		this.num = num;
+	public void setNumero(Integer numero) {
+		this.numero = numero;
 	}
 
-	public String getCompl() {
-		return compl;
+	public String getComplemento() {
+		return complemento;
 	}
 
-	public void setCompl(String compl) {
-		this.compl = compl;
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 
 	public String getCidade() {
@@ -111,9 +111,14 @@ public class Empresa implements Serializable{
 		this.estado = estado;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
-		return "Empresa [cnpj=" + cnpj + ", fantasia=" + fantasia + ", cep=" + cep + ", lograd=" + lograd + ", num="
-				+ num + ", compl=" + compl + ", cidade=" + cidade + ", bairro=" + bairro + ", estado=" + estado + "]";
+		return "Empresa [cnpj=" + cnpj + ", nome_fantasia=" + nome_fantasia + ", cep=" + cep + ", logradouro="
+				+ logradouro + ", numero=" + numero + ", complemento=" + complemento + ", cidade=" + cidade
+				+ ", bairro=" + bairro + ", estado=" + estado + "]";
 	}
 }
