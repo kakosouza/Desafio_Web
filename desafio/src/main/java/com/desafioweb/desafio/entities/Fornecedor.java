@@ -3,11 +3,18 @@ package com.desafioweb.desafio.entities;
 import java.io.Serializable;
 import java.sql.Date;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+
+@Entity
 public class Fornecedor implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
 	private String chave;
+	
 	private String nome; 
 	private Integer rg; 
 	private Date dtNascimento;
