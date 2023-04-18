@@ -1,0 +1,133 @@
+package dominio;
+
+public class Empresa implements Serializable {
+
+	private String cnpj; 
+	private String fantasia; 
+	private String cep;
+	private String lograd; 
+	private Integer num; 
+	private String compl; 
+	private String cidade;
+	private String bairro;
+	private String estado;
+	
+	public Empresa() {
+	}
+
+	public Empresa(String cnpj, String fantasia, String cep, String lograd, Integer num, String compl, String cidade,
+			String bairro, String estado) {
+		this.cnpj = cnpj;
+		this.fantasia = fantasia;
+		this.cep = cep;
+		this.lograd = lograd;
+		this.num = num;
+		this.compl = compl;
+		this.cidade = cidade;
+		this.bairro = bairro;
+		this.estado = estado;
+	}
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public String getFantasia() {
+		return fantasia;
+	}
+
+	public void setFantasia(String fantasia) {
+		this.fantasia = fantasia;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getLograd() {
+		return lograd;
+	}
+
+	public void setLograd(String lograd) {
+		this.lograd = lograd;
+	}
+
+	public Integer getNum() {
+		return num;
+	}
+
+	public void setNum(Integer num) {
+		this.num = num;
+	}
+
+	public String getCompl() {
+		return compl;
+	}
+
+	public void setCompl(String compl) {
+		this.compl = compl;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Empresa other = (Empresa) obj;
+		if (cnpj == null) {
+			if (other.cnpj != null)
+				return false;
+		} else if (!cnpj.equals(other.cnpj))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Empresa [cnpj=" + cnpj + ", fantasia=" + fantasia + ", cep=" + cep + ", lograd=" + lograd + ", num="
+				+ num + ", compl=" + compl + ", cidade=" + cidade + ", bairro=" + bairro + ", estado=" + estado + "]";
+	}
+}
