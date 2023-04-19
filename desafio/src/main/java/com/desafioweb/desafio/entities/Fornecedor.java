@@ -2,12 +2,11 @@ package com.desafioweb.desafio.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.Locale.Category;
+
+import com.desafioweb.desafio.entities.enums.FornStatus;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 
 
 @Entity
@@ -28,7 +27,9 @@ public class Fornecedor implements Serializable {
 	private String complemento; 
 	private String cidade;
 	private String bairro;
+	private Integer fstatus;
 	private String estado;
+	
 	
 	
 //	@ManyToMany
@@ -39,7 +40,8 @@ public class Fornecedor implements Serializable {
 	}
 
 	public Fornecedor(String chave, String nome, Integer rg, Date dtNascimento, String email, String cep,
-			String logradouro, Integer numero, String complemento, String cidade, String bairro, String estado) {
+			String logradouro, Integer numero, String complemento, String cidade, String bairro, 
+			FornStatus fstatus, String estado) {
 		super();
 		this.chave = chave;
 		this.nome = nome;
@@ -52,6 +54,7 @@ public class Fornecedor implements Serializable {
 		this.complemento = complemento;
 		this.cidade = cidade;
 		this.bairro = bairro;
+		setFstatus(fstatus);
 		this.estado = estado;
 	}
 
@@ -141,6 +144,16 @@ public class Fornecedor implements Serializable {
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
+	}
+
+	public FornStatus getFstatus() {
+		return FornStatus.valueOf(fstatus);
+	}
+
+	public void setFstatus(FornStatus fstatus) {
+		if (fstatus != null) {
+			this.fstatus = fstatus.getCode();
+		}
 	}
 
 	public String getEstado() {
