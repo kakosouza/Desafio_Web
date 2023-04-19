@@ -1,9 +1,12 @@
 package com.desafioweb.desafio.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Empresa implements Serializable {
@@ -21,6 +24,9 @@ public class Empresa implements Serializable {
 	private String cidade;
 	private String bairro;
 	private String estado;
+	
+	@ManyToMany(mappedBy = "empresas")
+	private Set<Fornecedor> fornecedores = new HashSet<Fornecedor>();
 	
 	public Empresa() {
 	}
@@ -109,6 +115,10 @@ public class Empresa implements Serializable {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+	public Set<Fornecedor> getFornecedores() {
+		return fornecedores;
 	}
 
 	@Override

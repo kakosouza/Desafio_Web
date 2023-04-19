@@ -2,46 +2,48 @@ package com.desafioweb.desafio.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.desafioweb.desafio.entities.enums.FornStatus;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Fornecedor implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	private String chave;
-	
-	private String nome; 
-	private Integer rg; 
+
+	private String nome;
+	private Integer rg;
 	private Date dtNascimento;
 	private String email;
 	private String cep;
-	private String logradouro; 
-	private Integer numero; 
-	private String complemento; 
+	private String logradouro;
+	private Integer numero;
+	private String complemento;
 	private String cidade;
 	private String bairro;
 	private Integer fstatus;
 	private String estado;
-	
-	
-	
-//	@ManyToMany
-//	@JoinTable(name = "forn_Empr", joinColumns = )
-//	private Set<ForneEmpr> fornemprs = HashSet<>();
-	
+
+	@ManyToMany
+	@JoinTable(name = "forn_Empr", joinColumns = @JoinColumn(name = "chave"), inverseJoinColumns = @JoinColumn(name = "cnpj"))
+	private Set<Empresa> empresas = new HashSet<Empresa>();
+
 	public Fornecedor() {
 	}
 
 	public Fornecedor(String chave, String nome, Integer rg, Date dtNascimento, String email, String cep,
-			String logradouro, Integer numero, String complemento, String cidade, String bairro, 
-			FornStatus fstatus, String estado) {
+			String logradouro, Integer numero, String complemento, String cidade, String bairro, FornStatus fstatus,
+			String estado) {
 		super();
 		this.chave = chave;
 		this.nome = nome;
@@ -164,6 +166,10 @@ public class Fornecedor implements Serializable {
 		this.estado = estado;
 	}
 
+	public Set<Empresa> getEmpresas() {
+		return empresas;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -188,4 +194,5 @@ public class Fornecedor implements Serializable {
 			return false;
 		return true;
 	}
+
 }
