@@ -2,9 +2,12 @@ package com.desafioweb.desafio.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Locale.Category;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 
 @Entity
@@ -26,6 +29,11 @@ public class Fornecedor implements Serializable {
 	private String cidade;
 	private String bairro;
 	private String estado;
+	
+	
+//	@ManyToMany
+//	@JoinTable(name = "forn_Empr", joinColumns = )
+//	private Set<ForneEmpr> fornemprs = HashSet<>();
 	
 	public Fornecedor() {
 	}
