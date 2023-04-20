@@ -23,4 +23,8 @@ public class FornecedorService {
 		Optional<Fornecedor> obj = repository.findById(chave);
 		return obj.get();
 	}
+	
+	public Fornecedor insert(Fornecedor obj) {
+		return repository.save(obj);
+	}
 }
