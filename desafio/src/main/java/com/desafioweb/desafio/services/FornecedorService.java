@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.desafioweb.desafio.entities.Fornecedor;
 import com.desafioweb.desafio.repositories.FornecedorRepository;
+import com.desafioweb.desafio.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class FornecedorService {
@@ -21,7 +22,7 @@ public class FornecedorService {
 	
 	public Fornecedor FindById(String chave) {
 		Optional<Fornecedor> obj = repository.findById(chave);
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException(chave));
 	}
 	
 	//INSERT
@@ -50,7 +51,7 @@ public class FornecedorService {
 		entidade.setDtNascimento(obj.getDtNascimento());
 		entidade.setEmail(obj.getEmail());
 		entidade.setEstado(obj.getEstado());
-		entidade.setFstatus(obj.getFstatus());
+//		entidade.setFstatus(obj.getFstatus());
 		entidade.setLogradouro(obj.getLogradouro());
 		entidade.setNome(obj.getNome());
 		entidade.setNumero(obj.getNumero());
