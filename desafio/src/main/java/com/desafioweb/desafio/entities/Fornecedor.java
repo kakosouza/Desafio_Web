@@ -6,11 +6,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.desafioweb.desafio.entities.enums.FornStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
 @Entity
@@ -33,9 +32,9 @@ public class Fornecedor implements Serializable {
 	private String bairro;
 	private Integer fstatus;
 	private String estado;
-
-	@ManyToMany
-	@JoinTable(name = "forn_Empr", joinColumns = @JoinColumn(name = "chave"), inverseJoinColumns = @JoinColumn(name = "cnpj"))
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "fornecedores")
 	private Set<Empresa> empresas = new HashSet<Empresa>();
 
 	public Fornecedor() {

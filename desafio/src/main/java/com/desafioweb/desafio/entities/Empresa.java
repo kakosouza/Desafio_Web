@@ -6,6 +6,8 @@ import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
 @Entity
@@ -25,7 +27,8 @@ public class Empresa implements Serializable {
 	private String bairro;
 	private String estado;
 	
-	@ManyToMany(mappedBy = "empresas")
+	@ManyToMany
+	@JoinTable(name = "empr_forn", joinColumns = @JoinColumn(name = "empr_id"), inverseJoinColumns = @JoinColumn(name = "forn_id"))
 	private Set<Fornecedor> fornecedores = new HashSet<Fornecedor>();
 	
 	public Empresa() {
