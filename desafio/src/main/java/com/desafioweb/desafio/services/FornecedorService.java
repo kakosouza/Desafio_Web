@@ -33,4 +33,27 @@ public class FornecedorService {
 	public void delete(String chave) {
 		repository.deleteById(chave);
 	}
+	
+	//UPDATE
+	public Fornecedor update(String chave, Fornecedor obj) {
+		Fornecedor entidade = repository.getReferenceById(chave);
+		updateData(entidade, obj);
+		return repository.save(entidade);
+	}
+
+	//Método que move os campos
+	private void updateData(Fornecedor entidade, Fornecedor obj) {
+		entidade.setBairro(obj.getBairro());
+		entidade.setCep(obj.getCep());
+		entidade.setCidade(obj.getCidade());
+		entidade.setComplemento(obj.getComplemento());
+		entidade.setDtNascimento(obj.getDtNascimento());
+		entidade.setEmail(obj.getEmail());
+		entidade.setEstado(obj.getEstado());
+		entidade.setFstatus(obj.getFstatus());
+		entidade.setLogradouro(obj.getLogradouro());
+		entidade.setNome(obj.getNome());
+		entidade.setNumero(obj.getNumero());
+		entidade.setRg(obj.getRg());
+	}
 }

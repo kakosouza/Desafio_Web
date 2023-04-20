@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.desafioweb.desafio.entities.Empresa;
+import com.desafioweb.desafio.entities.Fornecedor;
 import com.desafioweb.desafio.repositories.EmpresaRepository;
 
 @Service
@@ -32,5 +33,24 @@ public class EmpresaService {
 	//DELETE
 	public void delete(String cnpj) {
 		repository.deleteById(cnpj);
+	}
+	
+	//UPDATE
+	public Empresa update(String cnpj, Empresa obj) {
+		Empresa entidade = repository.getReferenceById(cnpj);
+		updateData(entidade, obj);
+		return repository.save(entidade);
+	}
+
+	//Método que move os campos
+	private void updateData(Empresa entidade, Empresa obj) {
+		entidade.setBairro(obj.getBairro());
+		entidade.setCep(obj.getCep());
+		entidade.setCidade(obj.getCidade());
+		entidade.setComplemento(obj.getComplemento());
+		entidade.setEstado(obj.getEstado());
+		entidade.setLogradouro(obj.getLogradouro());
+		entidade.setNumero(obj.getNumero());
+		entidade.setNome_fantasia(obj.getNome_fantasia());
 	}
 }
