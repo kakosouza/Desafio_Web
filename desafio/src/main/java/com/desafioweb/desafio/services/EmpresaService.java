@@ -24,7 +24,13 @@ public class EmpresaService {
 		return obj.get();
 	}
 	
+	//INSERT
 	public Empresa insert(Empresa obj) {
 		return repository.save(obj);
+	}
+	
+	//DELETE
+	public void delete(String cnpj) {
+		repository.deleteById(cnpj);
 	}
 }

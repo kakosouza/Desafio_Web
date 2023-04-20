@@ -24,7 +24,13 @@ public class FornecedorService {
 		return obj.get();
 	}
 	
+	//INSERT
 	public Fornecedor insert(Fornecedor obj) {
 		return repository.save(obj);
+	}
+	
+	//DELETE
+	public void delete(String chave) {
+		repository.deleteById(chave);
 	}
 }

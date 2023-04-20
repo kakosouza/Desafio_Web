@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,5 +43,11 @@ public class FornecedorResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{chave}").buildAndExpand(obj.getChave()).toUri();
 		
 		return ResponseEntity.created(uri).body(obj);
+	}
+	
+	@DeleteMapping(value = "/{chave}")
+	public ResponseEntity<Void> delete(@PathVariable String chave) {
+		service.delete(chave);
+		return ResponseEntity.noContent().build();
 	}
 }
