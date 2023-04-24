@@ -9,10 +9,11 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.desafioweb.desafio.entities.Empresa;
-import com.desafioweb.desafio.entities.Fornecedor;
 import com.desafioweb.desafio.repositories.EmpresaRepository;
 import com.desafioweb.desafio.services.exceptions.DatabaseException;
 import com.desafioweb.desafio.services.exceptions.ResourceNotFoundException;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class EmpresaService {
@@ -49,9 +50,14 @@ public class EmpresaService {
 	
 	//UPDATE
 	public Empresa update(String cnpj, Empresa obj) {
+		try {
 		Empresa entidade = repository.getReferenceById(cnpj);
 		updateData(entidade, obj);
 		return repository.save(entidade);
+		}
+		catch (EntityNotFoundException e ) {
+			throw new ResourceNotFoundException(cnpj);
+		}
 	}
 
 	//Método que move os campos

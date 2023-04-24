@@ -13,6 +13,8 @@ import com.desafioweb.desafio.repositories.FornecedorRepository;
 import com.desafioweb.desafio.services.exceptions.DatabaseException;
 import com.desafioweb.desafio.services.exceptions.ResourceNotFoundException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class FornecedorService {
 
@@ -48,9 +50,14 @@ public class FornecedorService {
 	
 	//UPDATE
 	public Fornecedor update(String chave, Fornecedor obj) {
-		Fornecedor entidade = repository.getReferenceById(chave);
-		updateData(entidade, obj);
-		return repository.save(entidade);
+		try {
+			Fornecedor entidade = repository.getReferenceById(chave);
+			updateData(entidade, obj);
+			return repository.save(entidade);
+		} 
+		catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(chave);
+		}
 	}
 
 	//Método que move os campos
