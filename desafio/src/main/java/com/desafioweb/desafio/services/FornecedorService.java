@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.desafioweb.desafio.entities.Fornecedor;
 import com.desafioweb.desafio.repositories.FornecedorRepository;
+import com.desafioweb.desafio.services.exceptions.DatabaseException;
 import com.desafioweb.desafio.services.exceptions.ResourceNotFoundException;
 
 @Service
@@ -32,7 +35,15 @@ public class FornecedorService {
 	
 	//DELETE
 	public void delete(String chave) {
+		try {
 		repository.deleteById(chave);
+		}
+		catch (EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException(chave);
+		}
+		catch (DataIntegrityViolationException e) {
+			throw new DatabaseException(e.getMessage());
+		}
 	}
 	
 	//UPDATE
