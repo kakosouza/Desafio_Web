@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Fornecedor } from '../model/fornecedor';
+import { Cadastro } from '../model/cadastro';
 
 @Component({
   selector: 'app-cadastros',
@@ -9,7 +9,7 @@ import { Fornecedor } from '../model/fornecedor';
 export class CadastrosComponent implements OnInit {
 
   // Inicializando o array
-  cadastros: Fornecedor[] = [];
+  cadastros: Cadastro[] = [];
   displayedColumns = ['chave','nome','logradouro','complemento','bairro','cidade','estado','cep','email'];
 
   constructor() {
