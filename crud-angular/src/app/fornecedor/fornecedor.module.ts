@@ -1,12 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
 import { FornecedorService } from './services/fornecedor.service';
+import { ListarFornecedorComponent } from './listar-fornecedor/listar-fornecedor.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ListarFornecedorComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    RouterModule
   ],
   providers: [
     FornecedorService
