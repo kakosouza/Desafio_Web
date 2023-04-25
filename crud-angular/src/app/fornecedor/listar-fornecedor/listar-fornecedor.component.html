@@ -1,6 +1,6 @@
 <h1>Fornecedores</h1>
 
-<table>
+<table class="table table-striped table-bordered table-hover">
     <tbody>
         <tr>
             <th>CPF/CNPJ</th>
@@ -12,9 +12,9 @@
                 </a>
             </th>
         </tr>
-        <tr>
-            <td> </td>
-            <td> </td>
+        <tr *ngFor="let fornecedor of fornecedores">
+            <td>{{fornecedor.chave}}</td>
+            <td>{{fornecedor.nome}}</td>
             <td class="text-center" style="width: 300px">
                 <a href="#" title="Editar" alt="Editar" class="btn btn-xs btn-info">
                     <i class="fa fa-edit" aria-hidden="true"></i> Editar
@@ -26,4 +26,4 @@
         </tr>
     </tbody>
 </table>
-<p>Nenhum fornecedor cadastrado.</p>
+<p *ngIf="fornecedores.length==0">Nenhum fornecedor cadastrado.</p>

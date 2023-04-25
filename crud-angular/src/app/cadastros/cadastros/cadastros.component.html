@@ -1,63 +1,21 @@
-<table mat-table [dataSource]="cadastros" class="mat-elevation-z8">
+<form>
+  <p>
+    <mat-form-field>
+        <mat-label></mat-label>
+        <input>
+        <mat-icon></mat-icon>
+        <mat-hint></mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label></mat-label>
+      <input>
+      <mat-icon></mat-icon>
+      <mat-hint></mat-hint>
+      </mat-form-field>
+  </p>
 
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="chave">
-    <th mat-header-cell *matHeaderCellDef> CPF/CNPJ </th>
-    <td mat-cell *matCellDef="let fornecedor"> {{ fornecedor.chave }} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="nome">
-    <th mat-header-cell *matHeaderCellDef> Nome </th>
-    <td mat-cell *matCellDef="let fornecedor"> {{ fornecedor.nome }} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="logradouro">
-    <th mat-header-cell *matHeaderCellDef> Logradouro </th>
-    <td mat-cell *matCellDef="let fornecedor"> {{ fornecedor.logradouro }} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="complemento">
-    <th mat-header-cell *matHeaderCellDef> Complemento </th>
-    <td mat-cell *matCellDef="let fornecedor"> {{ fornecedor.complemento }} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="bairro">
-    <th mat-header-cell *matHeaderCellDef> Bairro </th>
-    <td mat-cell *matCellDef="let fornecedor"> {{ fornecedor.bairro }} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="cidade">
-    <th mat-header-cell *matHeaderCellDef> Cidade </th>
-    <td mat-cell *matCellDef="let fornecedor"> {{ fornecedor.cidade }} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="estado">
-    <th mat-header-cell *matHeaderCellDef> Estado </th>
-    <td mat-cell *matCellDef="let fornecedor"> {{ fornecedor.estado }} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="cep">
-    <th mat-header-cell *matHeaderCellDef> CEP </th>
-    <td mat-cell *matCellDef="let fornecedor"> {{ fornecedor.cep }} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="email">
-    <th mat-header-cell *matHeaderCellDef> Email </th>
-    <td mat-cell *matCellDef="let fornecedor"> {{ fornecedor.email }} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-
+  <button></button>
+  <p><input></p>
+</form>
