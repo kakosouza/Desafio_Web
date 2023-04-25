@@ -5,10 +5,12 @@ import { RouterModule } from '@angular/router';
 
 import { ListarFornecedorComponent } from './listar-fornecedor/listar-fornecedor.component';
 import { FornecedorService } from './services/fornecedor.service';
+import { InserirFornecedorComponent } from './inserir-fornecedor/inserir-fornecedor.component';
 
 @NgModule({
   declarations: [
-    ListarFornecedorComponent
+    ListarFornecedorComponent,
+    InserirFornecedorComponent
   ],
   imports: [
     CommonModule,
