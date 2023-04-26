@@ -37,11 +37,11 @@ export class FornecedorService {
 
   atualizar(fornecedor: Fornecedor): void {
     //Obtem a lista completa de fornecedores
-    const fornecedores = this.listarTodos();
+    const fornecedores: Fornecedor[] = this.listarTodos();
 
     fornecedores.forEach((obj, index, objs) => {
       if (fornecedor.id === obj.id) {
-        objs[index] = fornecedor
+        objs[index] = fornecedor;
       }
     });
 

@@ -13,6 +13,6 @@ export class Fornecedor {
       public dt_nascimento?: Date,
       public email?: string,
       public fstatus?: number,
-      public rg?: number) {
-  }
+      public rg?: number
+  ) {}
 }

@@ -32,16 +32,16 @@ export class EmpresaService {
   buscarPorId(cnpj: string): Empresa | undefined {
     const empresas: Empresa[] = this.listarTodos();
     //Faz a busca por chave
-    return empresas.find(empresa => empresa.cnpj == cnpj);
+    return empresas.find(empresa => empresa.cnpj === cnpj);
   }
 
   atualizar(empresa: Empresa): void {
     //Obtem a lista completa de fornecedores
-    const empresas = this.listarTodos();
+    const empresas: Empresa[] = this.listarTodos();
 
     empresas.forEach((obj, index, objs) => {
       if (empresa.id === obj.id) {
-        objs[index] = empresa
+        objs[index] = empresa;
       }
     });
 

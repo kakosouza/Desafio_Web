@@ -10,9 +10,9 @@ import { FornecedorService } from './../services/fornecedor.service';
 })
 export class ListarFornecedorComponent implements OnInit {
 
-  fornecedores: Fornecedor[] = [];
+  fornecedores : Fornecedor[] = [];
 
-  constructor(private fornecedorService : FornecedorService) {}
+  constructor(private fornecedorService: FornecedorService) {}
 
   ngOnInit(): void {
     this.fornecedores = this.listaTodos();

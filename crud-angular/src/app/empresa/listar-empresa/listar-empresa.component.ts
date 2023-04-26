@@ -10,9 +10,9 @@ import { EmpresaService } from './../services/empresa.service';
 })
 export class ListarEmpresaComponent implements OnInit {
 
-  empresas: Empresa[] = [];
+  empresas : Empresa[] = [];
 
-  constructor(private empresaService : EmpresaService) {}
+  constructor(private empresaService: EmpresaService) {}
 
   ngOnInit(): void {
     this.empresas = this.listarTodos();

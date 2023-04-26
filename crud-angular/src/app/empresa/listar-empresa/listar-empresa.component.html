@@ -15,13 +15,13 @@
         </tr>
         <tr *ngFor="let empresa of empresas">
             <td>{{ empresa.cnpj }}</td>
-            <td>{{ empresa.nome_fantasia }}</td>
+            <td>{{ empresa.nome }}</td>
             <td class="text-center" style="width: 300px">
                 <a href="#" title="Editar" alt="Editar" class="btn btn-xs btn-info">
                     <i class="fa fa-edit" aria-hidden="true"></i> Editar
                 </a>
                 <a href="#" title="Remover" alt="Remover" class="btn btn-xs btn-danger">
-                  <i class="fa fa-edit" aria-hidden="true"></i> Remover
+                    <i class="fa fa-times" aria-hidden="true"></i> Remover
                 </a>
             </td>
         </tr>
