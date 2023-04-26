@@ -19,12 +19,12 @@ export class ListarFornecedorComponent implements OnInit {
   }
 
   listaTodos(): Fornecedor[] {
-//    return this.fornecedorService.listarTodos();
-      return [
-        new Fornecedor(1, "00011111111111", "Antonio"),
-        new Fornecedor(1, "00022222222222", "Carlos"),
-        new Fornecedor(1, "11111111111111", "Sandra"),
-        new Fornecedor(1, "00033333333333", "Paulo")
-      ];
+    return this.fornecedorService.listarTodos();
+//      return [
+//        new Fornecedor(1, "00011111111111", "Antonio"),
+//        new Fornecedor(1, "00022222222222", "Carlos"),
+//        new Fornecedor(1, "11111111111111", "Sandra"),
+//        new Fornecedor(1, "00033333333333", "Paulo")
+//      ];
   }
 }

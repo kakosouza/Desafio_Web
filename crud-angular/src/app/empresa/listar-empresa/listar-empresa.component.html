@@ -6,14 +6,14 @@
             <th>CNPJ</th>
             <th>Nome</th>
             <th class="text-center">
-                <a [routerLink]="['/empresas/novo']"
-                   href="#" title="Novo" alt="Novo"
+                <a href="#" title="Novo" alt="Novo"
+                   [routerLink]="['/empresas/novo']"
                    class="btn btn-xs btn-success">
                    <i class="fa fa-plus" aria-hidden="true"></i> Novo
                 </a>
             </th>
         </tr>
-        <tr  *ngFor="let empresa of empresas">
+        <tr *ngFor="let empresa of empresas">
             <td>{{ empresa.cnpj }}</td>
             <td>{{ empresa.nome_fantasia }}</td>
             <td class="text-center" style="width: 300px">
