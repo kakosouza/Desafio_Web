@@ -7,11 +7,13 @@ import { RouterModule } from '@angular/router';
 import { EmpresaService } from './services/empresa.service';
 import { ListarEmpresaComponent } from './listar-empresa/listar-empresa.component';
 import { InserirEmpresaComponent } from './inserir-empresa/inserir-empresa.component';
+import { EditarEmpresaComponent } from './editar-empresa/editar-empresa.component';
 
 @NgModule({
   declarations: [
     ListarEmpresaComponent,
-    InserirEmpresaComponent
+    InserirEmpresaComponent,
+    EditarEmpresaComponent
   ],
   imports: [
     CommonModule,
