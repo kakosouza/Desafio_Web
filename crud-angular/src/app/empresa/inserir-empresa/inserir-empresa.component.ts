@@ -9,7 +9,7 @@ import { EmpresaService } from '../services/empresa.service';
   selector: 'app-inserir-empresa',
   templateUrl: './inserir-empresa.component.html',
   styleUrls: ['./inserir-empresa.component.scss']
-})
+  })
 export class InserirEmpresaComponent implements OnInit {
   @ViewChild('formEmpresa') formEmpresa! : NgForm;
   empresa! : Empresa;

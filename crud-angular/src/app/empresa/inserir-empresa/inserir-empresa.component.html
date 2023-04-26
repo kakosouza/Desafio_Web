@@ -1,7 +1,7 @@
 <h1>Nova Empresa</h1>
 
 <div class="well">
-  <form #formFornecedor="ngForm">
+  <form #formEmpresa="ngForm">
         <div class="form-group">
             <label for="chave">CNPJ:</label>
             <input type="text" class="form-control" id="cnpj" name="cnpj"
@@ -11,10 +11,10 @@
                  maxlength="14" required>
             <div *ngIf="cnpj.errors && (cnpj.dirty || cnpj.touched)"
                 class="alert alert-danger">
-                <div [hidden]="!cnpj.errors?.['required']">
+                <div [hidden]="!cnpj.errors['required']">
                   Digite o CNPJ da Empresa com 14 posições numéricas.
                 </div>
-                <div [hidden]="!cnpj.errors?.['maxlength']">
+                <div [hidden]="!cnpj.errors['maxlength']">
                   O CNPJ deve conter no maximo 14 caracteres.
                 </div>
             </div>
@@ -28,10 +28,10 @@
                  minlength="2" required>
           <div *ngIf="nome.errors && (nome.dirty || nome.touched)"
               class="alert alert-danger">
-              <div [hidden]="!nome.errors?.['required']">
+              <div [hidden]="!nome.errors['required']">
                 Digite o Nome da Empresa.
               </div>
-              <div [hidden]="!nome.errors?.['minlength']">
+              <div [hidden]="!nome.errors['minlength']">
                 O Nome deve conter ao menos 2 caracteres.
               </div>
           </div>
@@ -39,12 +39,12 @@
 
         <div class="form-group">
            <button type="button" class="btn btn-primary"
-              (click)="inserir()"
-              [disabled]="!formEmpresa.form.valid">
+                (click)="inserir()"
+                [disabled]="!formEmpresa.form.valid">
               <i class="fa fa-save" aria-hidden="true"></i> Salvar
            </button>
            <a class="btn btn-secondary"
-               [routerLink]="['/empresas/listar']">
+               [routerLink]="['/empresas']">
             <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
            </a>
         </div>
