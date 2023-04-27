@@ -29,10 +29,10 @@ export class EmpresaService {
     localStorage[LS_CHAVE] = JSON.stringify(empresas);
   }
 
-  buscarPorId(cnpj: string): Empresa | undefined {
+  buscarPorId(id: number): Empresa | undefined {
     const empresas: Empresa[] = this.listarTodos();
     //Faz a busca por chave
-    return empresas.find(empresa => empresa.cnpj === cnpj);
+    return empresas.find(empresa => empresa.id === id);
   }
 
   atualizar(empresa: Empresa): void {
@@ -49,10 +49,10 @@ export class EmpresaService {
     localStorage[LS_CHAVE] = JSON.stringify(empresas);
   }
 
-  remover(cnpj: string): void {
+  remover(id: number): void {
     let empresas: Empresa[] = this.listarTodos();
 
-    empresas = empresas.filter(empresa => empresa.cnpj !== cnpj);
+    empresas = empresas.filter(empresa => empresa.id !== id);
 
     //Armazena
     localStorage[LS_CHAVE] = JSON.stringify(empresas);

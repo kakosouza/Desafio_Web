@@ -8,10 +8,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmpresaModule } from './empresa/empresa.module';
 import { FornecedorModule } from './fornecedor/fornecedor.module';
+import { NumericoDirective } from './shared/directives/numerico.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NumericoDirective
   ],
   imports: [
     BrowserModule,

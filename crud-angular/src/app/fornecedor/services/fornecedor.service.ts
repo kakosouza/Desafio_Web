@@ -29,10 +29,10 @@ export class FornecedorService {
     localStorage[LS_CHAVE] = JSON.stringify(fornecedores);
   }
 
-  buscarPorId(chave: string): Fornecedor | undefined {
+  buscarPorId(id: number): Fornecedor | undefined {
     const fornecedores: Fornecedor[] = this.listarTodos();
     //Faz a busca por chave
-    return fornecedores.find(fornecedor => fornecedor.chave === chave);
+    return fornecedores.find(fornecedor => fornecedor.id === id);
   }
 
   atualizar(fornecedor: Fornecedor): void {
@@ -49,10 +49,10 @@ export class FornecedorService {
     localStorage[LS_CHAVE] = JSON.stringify(fornecedores);
   }
 
-  remover(chave: string): void {
+  remover(id: number): void {
     let fornecedores: Fornecedor[] = this.listarTodos();
 
-    fornecedores = fornecedores.filter(fornecedor => fornecedor.chave !== chave);
+    fornecedores = fornecedores.filter(fornecedor => fornecedor.id !== id);
 
     //Armazena
     localStorage[LS_CHAVE] = JSON.stringify(fornecedores);

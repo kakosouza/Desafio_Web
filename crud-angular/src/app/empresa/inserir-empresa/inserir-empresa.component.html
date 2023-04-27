@@ -7,8 +7,7 @@
             <input type="text" class="form-control" id="cnpj" name="cnpj"
                  [(ngModel)]="empresa.cnpj"
                  #cnpj="ngModel"
-                 minlength="2"
-                 maxlength="14" required>
+                 minlength="2" maxlength="14" required>
             <div *ngIf="cnpj.errors && (cnpj.dirty || cnpj.touched)"
                 class="alert alert-danger">
                 <div [hidden]="!cnpj.errors['required']">

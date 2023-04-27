@@ -21,4 +21,12 @@ export class ListarEmpresaComponent implements OnInit {
   listarTodos(): Empresa[] {
     return this.empresaService.listarTodos();
   }
+
+  remover($event: any, empresa: Empresa): void {
+    $event.preventDefault();
+    if (confirm('Deseja realmente remover a empresa?')) {
+       this.empresaService.remover(empresa.id!);
+       this.empresas = this.listarTodos();
+    }
+  }
 }

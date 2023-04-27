@@ -20,11 +20,14 @@ export class ListarFornecedorComponent implements OnInit {
 
   listaTodos(): Fornecedor[] {
     return this.fornecedorService.listarTodos();
-//      return [
-//        new Fornecedor(1, "00011111111111", "Antonio"),
-//        new Fornecedor(1, "00022222222222", "Carlos"),
-//        new Fornecedor(1, "11111111111111", "Sandra"),
-//        new Fornecedor(1, "00033333333333", "Paulo")
-//      ];
   }
+
+  remover($event: any, fornecedor: Fornecedor): void {
+    $event.preventDefault();
+    if (confirm('Deseja realmente remover o fornecedor?')) {
+       this.fornecedorService.remover(fornecedor.id!);
+       this.fornecedores = this.listaTodos();
+    }
+  }
+
 }

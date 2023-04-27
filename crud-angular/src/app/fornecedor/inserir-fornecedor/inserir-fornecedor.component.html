@@ -7,7 +7,7 @@
             <input type="text" class="form-control" id="chave" name="chave"
                   [(ngModel)]="fornecedor.chave"
                   #chave="ngModel"
-                  minlength="2" required>
+                  minlength="2" maxlength="14" required>
             <div *ngIf="chave.errors && (chave.dirty || chave.touched)"
                  class="alert alert-danger">
                 <div [hidden]="!chave.errors['required']">
@@ -15,6 +15,9 @@
                 </div>
                 <div [hidden]="!chave.errors['minlength']">
                     Caso CPF, você deve preencher desta forma '000' + 11 posições numéricas do CPF.
+                </div>
+                <div [hidden]="!chave.errors['maxlength']">
+                    O CPF/CNPJ deve conter no máximo 14 caracteres numéricos.
                 </div>
             </div>
         </div>
@@ -47,6 +50,5 @@
               <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
            </a>
         </div>
-
     </form>
 </div>
