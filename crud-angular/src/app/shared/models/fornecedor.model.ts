@@ -10,7 +10,7 @@ export class Fornecedor {
       public cidade?: string,
       public estado?: string,
       public cep?: string,
-      public dt_nascimento?: Date,
+      public dtnascimento?: Date,
       public email?: string,
       public fstatus?: number,
       public rg?: number

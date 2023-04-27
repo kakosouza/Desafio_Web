@@ -2,7 +2,7 @@
 
 <div class="well">
   <form #formFornecedor="ngForm">
-      <div class="form-group">
+    <div class="form-group">
         <label for="chave">CPF/CNPJ:</label>
         <input type="text" class="form-control" id="chave" name="chave"
              [(ngModel)]="fornecedor.chave"
@@ -21,7 +21,7 @@
             </div>
 
         </div>
-</div>
+    </div>
 
     <div class="form-group">
       <label for="nome">Nome:</label>
@@ -39,6 +39,21 @@
           </div>
       </div>
     </div>
+
+    <div class="form-group">
+      <label for="dtnascimento">Data Nascimento:</label>
+      <input type="text" class="form-control" id="data" name="data"
+          [(ngModel)]="fornecedor.dtnascimento"
+          #dtnascimento="ngModel"
+          minlength="2" required>
+      <div *ngIf="dtnascimento.errors && (dtnascimento.dirty || dtnascimento.touched)"
+          class="alert alert-danger">
+          <div [hidden]="!dtnascimento.errors['required']">
+               Digite a Data de Nascimento do Fornecedor.
+          </div>
+      </div>
+    </div>
+
 
     <div class="form-group">
        <button type="button" class="btn btn-primary"

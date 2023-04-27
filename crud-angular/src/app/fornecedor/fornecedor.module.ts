@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { EditarFornecedorComponent } from './editar-fornecedor/editar-fornecedor.component';
+import { InserirFornecedorComponent } from './inserir-fornecedor/inserir-fornecedor.component';
 import { ListarFornecedorComponent } from './listar-fornecedor/listar-fornecedor.component';
 import { FornecedorService } from './services/fornecedor.service';
-import { InserirFornecedorComponent } from './inserir-fornecedor/inserir-fornecedor.component';
-import { EditarFornecedorComponent } from './editar-fornecedor/editar-fornecedor.component';
 
 @NgModule({
   declarations: [

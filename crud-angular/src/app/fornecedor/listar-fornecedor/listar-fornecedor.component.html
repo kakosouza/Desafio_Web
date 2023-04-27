@@ -5,6 +5,7 @@
         <tr>
             <th>CPF/CNPJ</th>
             <th>Nome</th>
+            <th>Data Nascimento</th>
             <th class="text-center">
                 <a href="#" title="Novo" alt="Novo"
                    [routerLink]="['/fornecedores/novo']"
@@ -16,6 +17,7 @@
         <tr *ngFor="let fornecedor of fornecedores">
             <td>{{ fornecedor.chave }}</td>
             <td>{{ fornecedor.nome }}</td>
+            <td>{{ fornecedor.dtnascimento }}</td>
             <td class="text-center" style="width: 300px">
                 <a href="#" title="Editar" alt="Editar"
                    [routerLink]="['/fornecedores/editar', fornecedor.id]"

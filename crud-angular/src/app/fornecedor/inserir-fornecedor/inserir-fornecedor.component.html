@@ -40,6 +40,20 @@
         </div>
 
         <div class="form-group">
+          <label for="dtnascimento">Data Nascimento:</label>
+          <input type="text" class="form-control" id="data" name="data"
+                  [(ngModel)]="fornecedor.dtnascimento"
+                  #dtnascimento="ngModel"
+                  required>
+          <div *ngIf="dtnascimento.errors && (dtnascimento.dirty || dtnascimento.touched)"
+               class="alert alert-danger">
+              <div [hidden]="!dtnascimento.errors['required']">
+                   Digite a Data de Nascimento do Fornecedor.
+              </div>
+          </div>
+        </div>
+
+        <div class="form-group">
            <button type="button" class="btn btn-primary"
               (click)="inserir()"
               [disabled]="!formFornecedor.form.valid">
