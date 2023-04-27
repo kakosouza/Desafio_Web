@@ -3,6 +3,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,7 +21,8 @@ import { FornecedorModule } from './fornecedor/fornecedor.module';
     MatToolbarModule,
     MatMenuModule,
     EmpresaModule,
-    FornecedorModule
+    FornecedorModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
