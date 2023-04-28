@@ -20,6 +20,7 @@ export class EditarEmpresaComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+
     //O + converte o parâmetro para número
     let id = +this.route.snapshot.params['id'];
 

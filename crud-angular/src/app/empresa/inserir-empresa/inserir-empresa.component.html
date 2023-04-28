@@ -38,6 +38,51 @@
         </div>
 
         <div class="form-group">
+          <label for="logradouro">Logradouro:</label>
+          <input type="text" class="form-control" id="logradouro" name="logradouro"
+                 [(ngModel)]="empresa.logradouro"
+                 #logradouro="ngModel"
+                 minlength="2" maxlength="40">
+          <div *ngIf="logradouro.errors && (logradouro.dirty || logradouro.touched)"
+              class="alert alert-danger">
+              <div [hidden]="!logradouro.errors['minlength']">
+                Digite o Logradouro que deve conter ao menos 2 caracteres.
+              </div>
+              <div [hidden]="!logradouro.errors['maxlength']">
+                O Logradouro deve conter até 40 caracteres.
+              </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="numero">Numero:</label>
+          <input type="text" class="form-control" id="numero" name="numero"
+                [(ngModel)]="empresa.numero"
+                #numero="ngModel"
+                maxlength="5">
+          <div *ngIf="numero.errors && (numero.dirty || numero.touched)"
+                class="alert alert-danger">
+                <div [hidden]="!numero.errors['maxlength']">
+                  Digite o Número do Logradouro com no máximo 5 dígitos.
+                </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="complemento">complemento</label>
+          <input type="text" class="form-control" id="complemento" name="complemento"
+                [(ngModel)]="empresa.complemento"
+                #complemento="ngModel"
+                maxlength="40">
+          <div *ngIf="complemento.errors && (complemento.dirty || complemento.touched)"
+                class="alert alert-danger">
+                <div [hidden]="!complemento.errors['maxlength']">
+                  Digite o Complemento do Logradouro com no máximo 40 dígitos.
+                </div>
+          </div>
+        </div>
+
+        <div class="form-group">
            <button type="button" class="btn btn-primary"
                 (click)="inserir()"
                 [disabled]="!formEmpresa.form.valid">
@@ -48,6 +93,5 @@
             <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
            </a>
         </div>
-
     </form>
 </div>
