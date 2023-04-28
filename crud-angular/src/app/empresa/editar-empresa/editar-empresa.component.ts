@@ -27,6 +27,7 @@ export class EditarEmpresaComponent implements OnInit {
     const res = this.empresaService.buscarPorId(id);
     if (res !== undefined)
         this.empresa = res;
+
     else
         throw new Error ("Pessoa não encontrada: id = " + id);
   }

@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Empresa } from 'src/app/shared/models/empresa.model';
-
-import { EmpresaService } from './../services/empresa.service';
 
 @Component({
   selector: 'app-listar-empresa',
@@ -10,23 +8,27 @@ import { EmpresaService } from './../services/empresa.service';
 })
 export class ListarEmpresaComponent implements OnInit {
 
-  empresas : Empresa[] = [];
+  @Input() empresas: Empresa[] = [];
+  @Output() inserir = new EventEmitter(false);
+  @Output() atualizar = new EventEmitter(false);
+  @Output() remover = new EventEmitter(false);
 
-  constructor(private empresaService: EmpresaService) {}
+  readonly displayedColumns = ['cnpj', 'nome'];
+
+  constructor() {}
 
   ngOnInit(): void {
-    this.empresas = this.listarTodos();
   }
 
-  listarTodos(): Empresa[] {
-    return this.empresaService.listarTodos();
+  onAdd() {
+    this.inserir.emit(true);
   }
 
-  remover($event: any, empresa: Empresa): void {
-    $event.preventDefault();
-    if (confirm('Deseja realmente remover a empresa?')) {
-       this.empresaService.remover(empresa.id!);
-       this.empresas = this.listarTodos();
-    }
+  onEdit(empresa: Empresa) {
+    this.atualizar.emit(empresa);
+  }
+
+  onDelete(empresa: Empresa) {
+    this.remover.emit(empresa);
   }
 }

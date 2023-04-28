@@ -1,33 +1,62 @@
-<h1>Empresas</h1>
+<mat-card>
+  <mat-toolbar color="BLACK"> Empresas Cadastradas </mat-toolbar>
 
-<table  class="table table-striped table-bordered table-hover">
-    <tbody>
-        <tr>
-            <th>CNPJ</th>
-            <th>Nome</th>
-            <th class="text-center">
-                <a href="#" title="Novo" alt="Novo"
-                   [routerLink]="['/empresas/novo']"
-                   class="btn btn-xs btn-success">
-                   <i class="fa fa-plus" aria-hidden="true"></i> Novo
-                </a>
-            </th>
-        </tr>
-        <tr *ngFor="let empresa of empresas">
-            <td>{{ empresa.cnpj }}</td>
-            <td>{{ empresa.nome }}</td>
-            <td class="text-center" style="width: 300px">
-                <a href="#" title="Editar" alt="Editar"
-                    [routerLink]="['/empresas/editar', empresa.id]"
-                    class="btn btn-xs btn-info">
-                    <i class="fa fa-edit" aria-hidden="true"></i> Editar
-                </a>
-                <a href="#" title="Remover" alt="Remover" class="btn btn-xs btn-danger"
-                    (click)="remover($event, empresa)">
-                    <i class="fa fa-times" aria-hidden="true"></i> Remover
-                </a>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<p *ngIf="empresas.length==0">Nenhuma empresa cadastrada.</p>
+  <div>
+    <table mat-table [dataSource]="empresas" class="mat-elevation-z8 demo-table">
+      <!-- CNPJ Column -->
+      <ng-container matColumnDef="cnpj">
+        <th mat-header-cell *matHeaderCellDef>CNPJ</th>
+        <td mat-cell *matCellDef="let empresa">{{ empresa.cnpj }}</td>
+      </ng-container>
+
+      <!-- Nome Column -->
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let empresa">{{ empresa.nome }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef class="action-column">
+          <button
+            mat-mini-fab
+            color="accent"
+            aria-label="Adicionar um curso"
+            (click)="onAdd()"
+            class="action-column-header"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+        </mat-header-cell>
+
+        <mat-cell *matCellDef="let course" class="action-column">
+          <button
+            mat-icon-button
+            color="primary"
+            aria-label="Editar Curso"
+            (click)="onEdit(course)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button
+            mat-icon-button
+            color="warn"
+            aria-label="Remover Curso"
+            (click)="onDelete(course)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <mat-spinner></mat-spinner>
+</mat-card>

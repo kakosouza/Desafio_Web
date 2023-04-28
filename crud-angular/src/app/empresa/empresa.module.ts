@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { NumericoDirective } from '../shared/directives/numerico.directive';
-import { EditarEmpresaComponent } from './editar-empresa/editar-empresa.component';
+import { AppMaterialModule } from '../shared/models/app-material/app-material.module';
+//import { EditarEmpresaComponent } from './editar-empresa/editar-empresa.component';
 import { InserirEmpresaComponent } from './inserir-empresa/inserir-empresa.component';
 import { ListarEmpresaComponent } from './listar-empresa/listar-empresa.component';
 import { EmpresaService } from './services/empresa.service';
@@ -14,13 +15,14 @@ import { EmpresaService } from './services/empresa.service';
   declarations: [
     ListarEmpresaComponent,
     InserirEmpresaComponent,
-    EditarEmpresaComponent,
+//    EditarEmpresaComponent,
     NumericoDirective
   ],
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    AppMaterialModule
   ],
   providers: [
     EmpresaService
