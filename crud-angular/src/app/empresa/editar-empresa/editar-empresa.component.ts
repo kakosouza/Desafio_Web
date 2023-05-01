@@ -12,7 +12,7 @@ import { EmpresaService } from '../services/empresa.service';
 })
 export class EditarEmpresaComponent implements OnInit {
   @ViewChild('formEmpresa') formEmpresa! : NgForm;
-  empresa! : Empresa;
+  empresa! : Partial<Empresa>;
 
   constructor(
     private empresaService: EmpresaService,
@@ -25,11 +25,11 @@ export class EditarEmpresaComponent implements OnInit {
     let id = +this.route.snapshot.params['id'];
 
     const res = this.empresaService.buscarPorId(id);
-    if (res !== undefined)
+    /*if (res !== undefined)
         this.empresa = res;
 
     else
-        throw new Error ("Pessoa não encontrada: id = " + id);
+        throw new Error ("Pessoa não encontrada: id = " + id);*/
   }
 
   //Método Atualizar

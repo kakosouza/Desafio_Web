@@ -10,7 +10,6 @@ import { InserirEmpresaComponent } from './inserir-empresa/inserir-empresa.compo
 import { ListarEmpresaComponent } from './listar-empresa/listar-empresa.component';
 import { EmpresaService } from './services/empresa.service';
 
-
 @NgModule({
   declarations: [
     ListarEmpresaComponent,

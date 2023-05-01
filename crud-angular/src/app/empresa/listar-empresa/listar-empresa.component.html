@@ -1,8 +1,11 @@
 <mat-card>
   <mat-toolbar color="BLACK"> Empresas Cadastradas </mat-toolbar>
-
-  <div>
-    <table mat-table [dataSource]="empresas" class="mat-elevation-z8 demo-table">
+  <div *ngIf="empresas$ | async as empresas; else loading">
+    <table
+      mat-table
+      [dataSource]="empresas"
+      class="mat-elevation-z8 demo-table"
+    >
       <!-- CNPJ Column -->
       <ng-container matColumnDef="cnpj">
         <th mat-header-cell *matHeaderCellDef>CNPJ</th>
@@ -20,7 +23,7 @@
           <button
             mat-mini-fab
             color="accent"
-            aria-label="Adicionar um curso"
+            aria-label="Adicionar uma empresa"
             (click)="onAdd()"
             class="action-column-header"
           >
@@ -28,12 +31,12 @@
           </button>
         </mat-header-cell>
 
-        <mat-cell *matCellDef="let course" class="action-column">
+        <mat-cell *matCellDef="let empresa" class="action-column">
           <button
             mat-icon-button
             color="primary"
-            aria-label="Editar Curso"
-            (click)="onEdit(course)"
+            aria-label="Editar Empresa"
+            (click)="onEdit(empresa)"
           >
             <mat-icon>edit</mat-icon>
           </button>
@@ -41,22 +44,22 @@
           <button
             mat-icon-button
             color="warn"
-            aria-label="Remover Curso"
-            (click)="onDelete(course)"
+            aria-label="Remover Empresa"
+            (click)="onDelete(empresa)"
           >
             <mat-icon>delete</mat-icon>
           </button>
         </mat-cell>
       </ng-container>
 
-
-
-
-
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </div>
 
-  <mat-spinner></mat-spinner>
+  <ng-template #loading>
+    <div class="loading-spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
 </mat-card>

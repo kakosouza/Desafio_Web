@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { first } from 'rxjs/operators';
+import { first, tap, delay } from 'rxjs/operators';
 import { Empresa } from 'src/app/shared/models/empresa.model';
 
 const LS_CHAVE: string = "empresas";
@@ -17,8 +17,15 @@ export class EmpresaService {
 //  listarTodos(): Empresa[] {
   listarTodos() {
       return this.httpClient.get<Empresa[]>(this.API)
-      .pipe(first(),);//    const empresas = localStorage[LS_CHAVE];
+      .pipe(
+        first(),
+        delay(5000),
+        tap(empresas => console.log(empresas))
+      );
+//      .pipe(first());
+//    const empresas = localStorage[LS_CHAVE];
 //  return empresas ? JSON.parse(empresas) : [];
+//    return [{id: 1, cnpj: "44444444444444", nome:"ASA LTDA"}];
   }
 
 /*  inserir(empresa: Empresa): void {
