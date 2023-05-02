@@ -5,11 +5,12 @@ import { RouterModule } from '@angular/router';
 
 import { NumericoDirective } from '../shared/directives/numerico.directive';
 import { AppMaterialModule } from '../shared/models/app-material/app-material.module';
-//import { EditarEmpresaComponent } from './editar-empresa/editar-empresa.component';
+import { SharedModule } from './../shared/shared.module';
 import { InserirEmpresaComponent } from './inserir-empresa/inserir-empresa.component';
 import { ListarEmpresaComponent } from './listar-empresa/listar-empresa.component';
 import { EmpresaService } from './services/empresa.service';
 
+//import { EditarEmpresaComponent } from './editar-empresa/editar-empresa.component';
 @NgModule({
   declarations: [
     ListarEmpresaComponent,
@@ -21,7 +22,8 @@ import { EmpresaService } from './services/empresa.service';
     CommonModule,
     FormsModule,
     RouterModule,
-    AppMaterialModule
+    AppMaterialModule,
+    SharedModule
   ],
   providers: [
     EmpresaService

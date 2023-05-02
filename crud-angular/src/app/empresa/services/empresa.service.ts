@@ -19,13 +19,9 @@ export class EmpresaService {
       return this.httpClient.get<Empresa[]>(this.API)
       .pipe(
         first(),
-        delay(5000),
+//        delay(5000),
         tap(empresas => console.log(empresas))
       );
-//      .pipe(first());
-//    const empresas = localStorage[LS_CHAVE];
-//  return empresas ? JSON.parse(empresas) : [];
-//    return [{id: 1, cnpj: "44444444444444", nome:"ASA LTDA"}];
   }
 
 /*  inserir(empresa: Empresa): void {
