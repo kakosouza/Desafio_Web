@@ -24,19 +24,6 @@ export class EmpresaService {
       );
   }
 
-/*  inserir(empresa: Empresa): void {
-    //Obtem a lista completa de fornecedores
-    const empresas = this.listarTodos();
-
-    empresa.id = new Date().getTime();
-
-    //Adiciona no final da lista
-    empresas.push(empresa);
-
-    //Armazena local storage
-    localStorage[LS_CHAVE] = JSON.stringify(empresas);
-  } */
-
   inserir(record: Partial<Empresa>) {
     return this.httpClient.post<Empresa>(this.API, record).pipe(first());
   }
@@ -60,29 +47,7 @@ export class EmpresaService {
     return this.inserir(record);
   }
 
-/*    atualizar(empresa: Empresa): void {
-      //Obtem a lista completa de fornecedores
-    const empresas: Empresa[] = this.listarTodos();
-
-    empresas.forEach((obj, index, objs) => {
-      if (empresa.id === obj.id) {
-        objs[index] = empresa;
-      }
-    });
-
-    //Armazena
-    localStorage[LS_CHAVE] = JSON.stringify(empresas);
-  }*/
-
   remover(id: number) {
     return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
   }
-/*    remover(id: number): void {
-      let empresas: Empresa[] = this.listarTodos();
-
-    empresas = empresas.filter(empresa => empresa.id !== id);
-
-    //Armazena
-    localStorage[LS_CHAVE] = JSON.stringify(empresas);
-  }*/
 }

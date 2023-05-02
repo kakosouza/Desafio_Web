@@ -1,4 +1,4 @@
-package com.desafioweb.desafio.services;
+package com.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,9 +9,9 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.desafioweb.desafio.entities.Empresa;
-import com.desafioweb.desafio.repositories.EmpresaRepository;
-import com.desafioweb.desafio.services.exceptions.DatabaseException;
-import com.desafioweb.desafio.services.exceptions.ResourceNotFoundException;
+import com.exceptions.DatabaseException;
+import com.exceptions.ResourceNotFoundException;
+import com.repositories.EmpresaRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -69,6 +69,6 @@ public class EmpresaService {
 		entidade.setEstado(obj.getEstado());
 		entidade.setLogradouro(obj.getLogradouro());
 		entidade.setNumero(obj.getNumero());
-		entidade.setNome_fantasia(obj.getNome_fantasia());
+		entidade.setNome(obj.getNome());
 	}
 }

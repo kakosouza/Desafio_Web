@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.desafioweb.desafio.entities.Fornecedor;
-import com.desafioweb.desafio.services.FornecedorService;
+import com.services.FornecedorService;
 
 @RestController
 @RequestMapping(value = "/fornecedores")

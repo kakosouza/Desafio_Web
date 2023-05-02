@@ -1,4 +1,4 @@
-package com.desafioweb.desafio.services.exceptions;
+package com.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
 

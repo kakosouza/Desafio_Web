@@ -1,4 +1,4 @@
-package com.desafioweb.desafio.repositories;
+package com.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

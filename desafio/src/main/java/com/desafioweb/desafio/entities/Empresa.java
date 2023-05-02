@@ -18,7 +18,7 @@ public class Empresa implements Serializable {
 	@Id
 	private String cnpj; 
 	
-	private String nome_fantasia; 
+	private String nome; 
 	private String cep;
 	private String logradouro; 
 	private Integer numero; 
@@ -34,11 +34,11 @@ public class Empresa implements Serializable {
 	public Empresa() {
 	}
 
-	public Empresa(String cnpj, String nome_fantasia, String cep, String logradouro, Integer numero, String complemento,
+	public Empresa(String cnpj, String nome, String cep, String logradouro, Integer numero, String complemento,
 			String cidade, String bairro, String estado) {
 		super();
 		this.cnpj = cnpj;
-		this.nome_fantasia = nome_fantasia;
+		this.nome = nome;
 		this.cep = cep;
 		this.logradouro = logradouro;
 		this.numero = numero;
@@ -56,12 +56,12 @@ public class Empresa implements Serializable {
 		this.cnpj = cnpj;
 	}
 
-	public String getNome_fantasia() {
-		return nome_fantasia;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNome_fantasia(String nome_fantasia) {
-		this.nome_fantasia = nome_fantasia;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getCep() {

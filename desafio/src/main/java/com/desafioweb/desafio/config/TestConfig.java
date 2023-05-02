@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Profile;
 import com.desafioweb.desafio.entities.Empresa;
 import com.desafioweb.desafio.entities.Fornecedor;
 import com.desafioweb.desafio.entities.enums.FornStatus;
-import com.desafioweb.desafio.repositories.EmpresaRepository;
-import com.desafioweb.desafio.repositories.FornecedorRepository;
+import com.repositories.EmpresaRepository;
+import com.repositories.FornecedorRepository;
 
 @Configuration
 @Profile("test")

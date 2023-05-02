@@ -1,4 +1,4 @@
-package com.desafioweb.desafio.services;
+package com.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,9 +9,9 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.desafioweb.desafio.entities.Fornecedor;
-import com.desafioweb.desafio.repositories.FornecedorRepository;
-import com.desafioweb.desafio.services.exceptions.DatabaseException;
-import com.desafioweb.desafio.services.exceptions.ResourceNotFoundException;
+import com.exceptions.DatabaseException;
+import com.exceptions.ResourceNotFoundException;
+import com.repositories.FornecedorRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
