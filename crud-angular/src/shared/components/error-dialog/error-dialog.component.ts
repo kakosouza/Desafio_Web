@@ -8,7 +8,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ErrorDialogComponent implements OnInit {
 
-    // Construtor da mensagem de ERRO
     constructor(@Inject(MAT_DIALOG_DATA) public data: string) {}
 
     ngOnInit(): void {

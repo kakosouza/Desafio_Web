@@ -41,9 +41,5 @@ public class Empresa {
 
     @Column(length = 2, nullable = true)
 	private String estado;
-
-    public Empresa() {
-	}
-
-    
+   
 }

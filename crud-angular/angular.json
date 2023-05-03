@@ -3,14 +3,11 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cadastros": {
+    "crud-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
-        },
-        "@schematics/angular:application": {
-          "strict": true
         }
       },
       "root": "",
@@ -20,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/cadastros",
+            "outputPath": "dist/crud-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -33,10 +30,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/@fortawesome/fontawesome-free/css/all.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -71,10 +66,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "cadastros:build:production"
+              "browserTarget": "crud-angular:build:production"
             },
             "development": {
-              "browserTarget": "cadastros:build:development"
+              "browserTarget": "crud-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +77,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cadastros:build"
+            "browserTarget": "crud-angular:build"
           }
         },
         "test": {
@@ -109,6 +104,6 @@
     }
   },
   "cli": {
-    "analytics": "21b6b7ff-a2b1-45af-ba12-5db37e3c1c06"
+    "analytics": "79aff74a-18d4-474f-8c34-50ea42a0baab"
   }
 }
