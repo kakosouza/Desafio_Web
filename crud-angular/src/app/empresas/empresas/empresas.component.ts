@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Empresa } from 'src/shared/models/empresa.model';
 import { EmpresasService } from '../services/empresas.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-empresas',
@@ -9,13 +10,13 @@ import { EmpresasService } from '../services/empresas.service';
 })
 export class EmpresasComponent implements OnInit {
 
-  empresas: Empresa[] = [];
+  empresas$: Observable<Empresa[]>;
 
   displayedColumns = ['cnpj','nome','actions'];
 
 
   constructor(private empresaService: EmpresasService) {
-    this.empresas = this.empresaService.list();
+    this.empresas$ = this.empresaService.list();
   }
 
   ngOnInit(): void {
