@@ -15,14 +15,14 @@ public class CrudSpringApplication {
 		SpringApplication.run(CrudSpringApplication.class, args);
 	}
 
-	@Bean
+	@Bean 	//O Spring vai gerenciar tudo
 	CommandLineRunner initDataBase(EmpresaRepository empresaRepository) {
 		return args -> {
 			empresaRepository.deleteAll();
 
 			Empresa e = new Empresa();
 			e.setCnpj("11111111111111");
-			e.setNome("PEDRO");
+			e.setNome("ACCENTURE");
 
 			empresaRepository.save(e);
 		};

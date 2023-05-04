@@ -11,14 +11,14 @@ import com.carlos.crudspring.repository.EmpresaRepository;
 
 import lombok.AllArgsConstructor;
 
-@RestController
-@RequestMapping("/api/empresas")
-@AllArgsConstructor
+@RestController     //Contém um end-point
+@RequestMapping("/api/empresas")    //End-point
+@AllArgsConstructor //Cria o construtor automaticamente
 public class EmpresaController {
     
     private final EmpresaRepository empresaRepository;
 
-    @GetMapping
+    @GetMapping 
     public List<Empresa> list() {
         return empresaRepository.findAll();
     }

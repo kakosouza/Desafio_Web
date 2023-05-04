@@ -7,8 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-@Data
-@Entity
+@Data       //Gera os Get's e Set's automaticamente
+@Entity     //Anotação de Entidade que faz o mapeamente com o Banco de Dados
 public class Empresa {
 
     @Id
