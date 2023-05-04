@@ -6,6 +6,7 @@ import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-d
 import { Empresa } from 'src/shared/models/empresa.model';
 
 import { EmpresasService } from '../services/empresas.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-empresas',
@@ -21,7 +22,10 @@ export class EmpresasComponent implements OnInit {
 
   constructor(
     private empresaService: EmpresasService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
+
   ) {
     this.empresas$ = this.empresaService.list()
       .pipe(
@@ -39,5 +43,9 @@ export class EmpresasComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  onAdd() {
+    this.router.navigate(['new'], { relativeTo: this.route });
   }
 }

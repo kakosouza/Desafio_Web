@@ -17,13 +17,19 @@
 
       <!-- Action Column -->
       <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef>
-          <button
-            mat-mini-fab
-            color="accent"
-            aria-label="Adicionar uma empresa"
-          >
-            <mat-icon>add</mat-icon>
+        <mat-header-cell *matHeaderCellDef class="action-column">
+          <button mat-mini-fab color="accent" aria-label="Adicionar uma empresa">
+            <th class="text-center">
+              <a
+                href="#"
+                title="Novo"
+                alt="Novo"
+                [routerLink]="['/empresas/new']"
+                class="btn btn-xs btn-success"
+              >
+                <i class="fa fa-plus" aria-hidden="true"></i> Novo
+              </a>
+            </th>
           </button>
         </mat-header-cell>
 
