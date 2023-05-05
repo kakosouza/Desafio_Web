@@ -21,7 +21,7 @@ export class EmpresasService {
       );
   }
 
-  save(record: Empresa) {
-    return this.httpClient.post<Empresa>(this.API, record);
+  save(record: Partial<Empresa>) {
+    return this.httpClient.post<Empresa>(this.API, record).pipe(first());
   }
 }

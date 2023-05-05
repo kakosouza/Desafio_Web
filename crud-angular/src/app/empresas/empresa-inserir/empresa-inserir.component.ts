@@ -20,15 +20,15 @@ export class EmpresaInserirComponent implements OnInit {
       private location: Location
     ) {
     this.form = this.formBuilder.group({
-      cnpj: [null],
-      nome: [null],
-      logradouro: [null],
-      numero: [null],
-      complemento: [null],
-      bairro: [null],
-      cidade: [null],
-      estado: [null],
-      cep: [null]
+      cnpj: [''],
+      nome: [''],
+      logradouro: [''],
+      numero: [0],
+      complemento: [''],
+      bairro: [''],
+      cidade: [''],
+      estado: [''],
+      cep: ['']
     });
   }
 
@@ -36,7 +36,12 @@ export class EmpresaInserirComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.save(this.form.value).subscribe(data => this.onSuccess(), error => this.onError());
+    if (this.form.valid) {
+      this.service.save(this.form.value).subscribe(data => this.onSuccess());
+    }
+    else  {
+      this.service.save(this.form.value).subscribe(error => this.onError());
+    }
   }
 
   onCancel() {
