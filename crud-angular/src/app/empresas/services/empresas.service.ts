@@ -20,4 +20,8 @@ export class EmpresasService {
         tap(empresas => console.log(empresas))
       );
   }
+
+  save(record: Empresa) {
+    return this.httpClient.post<Empresa>(this.API, record);
+  }
 }
