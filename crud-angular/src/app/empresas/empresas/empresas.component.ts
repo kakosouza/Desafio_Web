@@ -17,7 +17,7 @@ export class EmpresasComponent implements OnInit {
 
   empresas$: Observable<Empresa[]>;
 
-  displayedColumns = ['cnpj','nome','actions'];
+  readonly displayedColumns = ['cnpj','nome','actions'];
 
 
   constructor(

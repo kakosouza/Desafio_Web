@@ -1,5 +1,21 @@
-table {
-  width: 100%;
+mat-card {
+  max-width: 90%;
+  margin: 2em auto;
+  text-align: center;
+}
+.mat-table {
+  overflow: auto;
+  max-height: 600px;
+}
+
+.actions-column {
+  flex: 0 0 100px;
+}
+
+.column-flex {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
 }
 
 .loading-spinner {
@@ -8,4 +24,9 @@ table {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.toolbar-black {
+  max-height: 30px;
+  background-color: rgba(0, 0, 0, 0.20  );
 }
