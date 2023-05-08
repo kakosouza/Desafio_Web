@@ -6,11 +6,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmpresasService } from '../services/empresas.service';
 
 @Component({
-  selector: 'app-empresa-inserir',
-  templateUrl: './empresa-inserir.component.html',
-  styleUrls: ['./empresa-inserir.component.scss']
+  selector: 'app-empresa-editar',
+  templateUrl: './empresa-editar.component.html',
+  styleUrls: ['./empresa-editar.component.scss']
 })
-export class EmpresaInserirComponent implements OnInit {
+export class EmpresaEditarComponent implements OnInit {
 
   form: FormGroup;
 
