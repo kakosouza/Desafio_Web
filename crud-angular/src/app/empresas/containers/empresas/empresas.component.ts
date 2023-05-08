@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
 import { Empresa } from 'src/shared/models/empresa.model';
 
-import { EmpresasService } from '../services/empresas.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { EmpresasService } from '../../services/empresas.service';
 
 @Component({
   selector: 'app-empresas',
@@ -48,4 +48,9 @@ export class EmpresasComponent implements OnInit {
   onAdd() {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
+
+  onEdit(empresa: Empresa) {
+    this.router.navigate(['edit', empresa.id], { relativeTo: this.route });
+  }
+
 }
