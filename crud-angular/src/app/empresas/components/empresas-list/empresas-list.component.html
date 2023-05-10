@@ -14,7 +14,7 @@
   <!-- Action Column -->
   <ng-container matColumnDef="actions">
     <mat-header-cell *matHeaderCellDef class="actions-column">
-      <button (click)="onAdd()" mat-mini-fab color="accent" aria-label="Adicionar uma empresa">
+      <button (click)="onAdd()" color="accent" aria-label="Adicionar uma empresa">
         <mat-icon>add</mat-icon>
       </button>
     </mat-header-cell>
@@ -24,7 +24,7 @@
         <mat-icon>edit</mat-icon>
       </button>
 
-      <button mat-icon-button color="warn" aria-label="Remover uma Empresa">
+      <button (click)="onDelete(empresa)" mat-icon-button color="warn" aria-label="Remover uma Empresa">
         <mat-icon>delete</mat-icon>
       </button>
     </mat-cell>

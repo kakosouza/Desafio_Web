@@ -7,6 +7,7 @@ import { AppMaterialModule } from '../../shared/models/app-material/app-material
 import { EmpresasListComponent } from './components/empresas-list/empresas-list.component';
 import { EmpresasComponent } from './containers/empresas/empresas.component';
 import { EmpresaEditarComponent } from './empresa-editar/empresa-editar.component';
+import { EmpresaInserirComponent } from './empresa-inserir/empresa-inserir.component';
 import { EmpresasRoutingModule } from './empresas-routing.module';
 
 
@@ -15,7 +16,8 @@ import { EmpresasRoutingModule } from './empresas-routing.module';
   declarations: [
     EmpresasComponent,
     EmpresaEditarComponent,
-    EmpresasListComponent
+    EmpresasListComponent,
+    EmpresaInserirComponent
   ],
   imports: [
     CommonModule,

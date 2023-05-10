@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, first } from 'rxjs';
+import { first } from 'rxjs';
 import { Empresa } from 'src/shared/models/empresa.model';
 
 @Injectable({
@@ -17,11 +17,32 @@ export class EmpresasService {
       .pipe(
         first(),
 //        delay(5000),
-        tap(empresas => console.log(empresas))
+//        tap(empresas => console.log(empresas))
       );
   }
 
+  loadById(id: number) {
+    return this.httpClient.get<Empresa>(`${this.API}/${id}`);
+
+  }
+
   save(record: Partial<Empresa>) {
+    console.log(record);
+    if (record.id) {
+      return this.update(record);
+    }
+      return this.create(record);
+  }
+
+  private create(record: Partial<Empresa>) {
     return this.httpClient.post<Empresa>(this.API, record).pipe(first());
+  }
+
+  private update(record: Partial<Empresa>) {
+    return this.httpClient.put<Empresa>(`${this.API}/${record.id}`, record).pipe(first());
+  }
+
+  remove(id: number) {
+    return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
   }
 }

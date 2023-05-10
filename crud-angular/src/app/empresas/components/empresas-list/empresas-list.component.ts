@@ -11,6 +11,7 @@ export class EmpresasListComponent implements OnInit{
   @Input() empresas: Empresa[] = [];
   @Output() add = new EventEmitter(false);
   @Output() edit = new EventEmitter(false);
+  @Output() remove = new EventEmitter(false);
 
   readonly displayedColumns = ['cnpj','nome','actions'];
 
@@ -27,4 +28,7 @@ export class EmpresasListComponent implements OnInit{
     this.edit.emit(empresa);
   }
 
+  onDelete(empresa: Empresa): void {
+    this.remove.emit(empresa);
+  }
 }
