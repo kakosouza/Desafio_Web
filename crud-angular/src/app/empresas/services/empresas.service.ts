@@ -45,4 +45,17 @@ export class EmpresasService {
   remove(id: number) {
     return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
   }
+
+  buscar(cep: string, dados: XMLHttpRequest) {
+//    console.log(cep);
+    alert(cep);
+    dados.open("GET", "http://cep.la/" + cep + '"', true);
+    dados.setRequestHeader ("Accept", "application/json");
+    dados.onreadystatechange = function() {
+      if ((this.readyState === 0 || this.readyState === 4 ) && this.status === 200)
+        alert(this.responseText)
+//        return this.responseText;
+    };
+    dados.send(null);
+  }
 }

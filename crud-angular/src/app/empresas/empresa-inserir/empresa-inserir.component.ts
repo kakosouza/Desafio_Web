@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { EmpresasService } from '../services/empresas.service';
 import { Location } from '@angular/common';
+import { Empresa } from 'src/shared/models/empresa.model';
 
 @Component({
   selector: 'app-empresa-inserir',
@@ -14,6 +15,10 @@ import { Location } from '@angular/common';
 export class EmpresaInserirComponent implements OnInit {
 
   form: FormGroup;
+  public cepInput: string = '';
+  public dados = new XMLHttpRequest();
+//  private cepOk: string = '';
+  private empresa: Empresa = this.route.snapshot.data['empresa'];
 
   constructor(private formBuilder: FormBuilder,
       private service: EmpresasService,
@@ -21,7 +26,7 @@ export class EmpresaInserirComponent implements OnInit {
       private location: Location,
       private route: ActivatedRoute,
       private router: Router
-    ) {
+      ) {
       this.form = this.formBuilder.group({
         id: [0],
         cnpj: [''],
@@ -36,7 +41,8 @@ export class EmpresaInserirComponent implements OnInit {
       });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+   }
 
   onSubmit() {
     if (this.form.valid !== null) {
@@ -53,7 +59,7 @@ export class EmpresaInserirComponent implements OnInit {
   }
 
   onCep() {
-
+    this.service.buscar(this.cepInput, this.dados);
   }
 
   onSuccess() {
