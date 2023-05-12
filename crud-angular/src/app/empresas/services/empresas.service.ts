@@ -29,8 +29,10 @@ export class EmpresasService {
   save(record: Partial<Empresa>) {
     console.log(record);
     if (record.id) {
+      console.log('Update')
       return this.update(record);
     }
+      console.log('Create')
       return this.create(record);
   }
 

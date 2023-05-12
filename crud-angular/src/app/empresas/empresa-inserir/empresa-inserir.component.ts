@@ -18,9 +18,9 @@ export class EmpresaInserirComponent implements OnInit {
   form: FormGroup;
   public cepInput: string = '';
   public dados = new XMLHttpRequest();
-  private retorno: string = '';
   private resultado: string [] = [];
   private empresa: Empresa = this.route.snapshot.data['empresa'];
+  public url: string = "http://localhost:4200/empresas/new";
 
   constructor(private formBuilder: FormBuilder,
       private service: EmpresasService,
@@ -50,8 +50,10 @@ export class EmpresaInserirComponent implements OnInit {
   onSubmit() {
     if (this.form.valid !== null) {
       console.log(this.form.value);
-      this.form.get('http://localhost:4200/empresas/new');
-      this.service.save(this.form.value).subscribe(data => this.onSuccess());
+      this.service.save(this.form.value).subscribe(data => {
+        this.onSuccess();
+        this.form.reset();
+      });
     }
     else  {
       this.service.save(this.form.value).subscribe(error => this.onError());
@@ -72,17 +74,16 @@ export class EmpresaInserirComponent implements OnInit {
 
   populaDadosForm(dados:any) {
     this.form.patchValue({
-      cnpj: this.form.value.cnpj,
-      nome: this.form.value.nome,
+//      cnpj: this.form.value.cnpj,
+//      nome: this.form.value.nome,
       logradouro: dados.logradouro,
-      numero: this.form.value.numero,
-      complemento: this.form.value.complemento,
+//      numero: this.form.value.numero,
+//      complemento: this.form.value.complemento,
       bairro: dados.bairro,
       cidade: dados.localidade,
       estado: dados.uf,
       cep: dados.cep
   })
-
 }
 
 
