@@ -2,5 +2,16 @@
   <mat-toolbar color="primary">
     <span> Cadastro de Empresas e Fornecedores </span>
   </mat-toolbar>
+
+  <mat-toolbar class="toolbar-black">
+  <button mat-button [matMenuTriggerFor]="menu">Cadastros</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="empresas">Empresas</button>
+    <button mat-menu-item routerLink="/fornecedores">Fornecedores</button>
+    <button mat-menu-item routerLink="">Empresas/Fornecedores</button>
+  </mat-menu></mat-toolbar
+>
+
+
   <router-outlet></router-outlet>
 </div>

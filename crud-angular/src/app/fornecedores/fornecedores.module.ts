@@ -27,4 +27,4 @@ import { FornecedoresRoutingModule } from '../fornecedores/fornecedores-routing.
     ReactiveFormsModule
   ]
 })
-export class FornecedorsModule { }
+export class FornecedoresModule { }
