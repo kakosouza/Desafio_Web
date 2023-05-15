@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 
 import { EmpresasService } from '../services/empresas.service';
 import { Location } from '@angular/common';
-import { Empresa } from 'src/shared/models/empresa.model';
 import { ConsultaCepService } from 'src/shared/services/consulta-cep.service';
+import { Empresa } from 'src/shared/models/empresa.model';
 
 @Component({
   selector: 'app-empresa-inserir',
@@ -15,36 +15,55 @@ import { ConsultaCepService } from 'src/shared/services/consulta-cep.service';
 })
 export class EmpresaInserirComponent implements OnInit {
 
-  form: FormGroup;
+//  form: FormGroup;
   public cepInput: string = '';
   public dados = new XMLHttpRequest();
-  private resultado: string [] = [];
-  private empresa: Empresa = this.route.snapshot.data['empresa'];
-  public url: string = "http://localhost:4200/empresas/new";
 
-  constructor(private formBuilder: FormBuilder,
+  form = this.formBuilder.group({
+    id: [0],
+    cnpj: ['', [Validators.required,
+                Validators.minLength(14),
+                Validators.maxLength(14)]],
+    nome: ['', [Validators.required,
+                Validators.minLength(5),
+                Validators.maxLength(200)]],
+    logradouro: [''],
+    numero: [0],
+    complemento: [''],
+    bairro: [''],
+    cidade: [''],
+    estado: ['', [Validators.minLength(2),
+                 Validators.maxLength(2)]],
+    cep: ['', [Validators.minLength(8),
+               Validators.maxLength(8)]]
+  });
+
+  constructor(private formBuilder: NonNullableFormBuilder,
       private service: EmpresasService,
       private snackBar: MatSnackBar,
       private location: Location,
       private route: ActivatedRoute,
       private cepService: ConsultaCepService,
       private rotaAtiva: ActivatedRoute
+
       ) {
-      this.form = this.formBuilder.group({
-        id: [0],
-        cnpj: [''],
-        nome: [''],
-        logradouro: [''],
-        numero: [0],
-        complemento: [''],
-        bairro: [''],
-        cidade: [''],
-        estado: [''],
-        cep: ['']
-      });
+//      this.
   }
 
   ngOnInit() {
+/*    const empresa: Empresa = this.route.snapshot.data['empresa'];
+    this.form.setValue({
+      id: empresa.id,
+      cnpj: empresa.cnpj,
+      nome: empresa.nome,
+      cep: empresa.cep,
+      logradouro: empresa.logradouro,
+      numero: empresa.numero,
+      complemento: empresa.complemento,
+      bairro: empresa.bairro,
+      cidade: empresa.cidade,
+      estado: empresa.estado
+    });*/
    }
 
   onSubmit() {
@@ -94,6 +113,41 @@ export class EmpresaInserirComponent implements OnInit {
 
   onError() {
     this.snackBar.open('Erro ao salvar Empresa.', '', {duration: 5000});
+  }
+
+  getErrorMessage(fieldName: string) {
+    const field = this.form.get(fieldName);
+
+    if (field?.hasError('required')) {
+        return 'Campo Obrigatório';
+    }
+
+    if (fieldName === "nome" && field?.hasError('minlength')) {
+        const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 5;
+        return `Tamanho mínimo precisa ser de ${requiredLength} caracteres.`;
+        }
+
+    if (fieldName === "cnpj" && field?.hasError('minlength')) {
+        const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 14;
+        return `Tamanho mínimo precisa ser de ${requiredLength} caracteres.`;
+    }
+
+    if (fieldName === "cnpj" && field?.hasError('maxlength')) {
+      const requiredLength: number = field.errors ? field.errors['maxlength']['requiredLength'] : 14;
+      return `Tamanho máximo excedido de ${requiredLength} caracteres.`;
+    }
+
+    if (fieldName === "cep") {
+        if (isNaN(field?.value)) {
+            return `Este campo precisa ser numérico.`
+        }
+
+        if ( field?.hasError('minlength') || field?.hasError('maxlength')) {
+          const requiredLength: number = field.errors ? field.errors['maxlength']['requiredLength'] : 8;
+          return `Tamanho do campo CEP precisa ser de ${requiredLength} caracteres numéricos.`;
+        }
+    }
+    return 'Campo Inválido';
   }
 
 }
