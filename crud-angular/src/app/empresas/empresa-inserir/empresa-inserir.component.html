@@ -28,6 +28,7 @@
 
       <mat-form-field appearance="outline" class="full-width">
         <input matInput placeholder="Numero" formControlName="numero" />
+        <mat-error *ngIf="form.get('numero')?.invalid">{{getErrorMessage("numero")}}</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">

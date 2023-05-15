@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Fornecedor } from 'src/shared/models/fornecedor.model';
 
-import { Resolve } from '../../empresas/guards/resolve';
+import { Resolve } from '../../fornecedores/guards/resolve';
 import { FornecedoresService } from '../services/fornecedores.service';
 
 

@@ -122,19 +122,25 @@ export class EmpresaInserirComponent implements OnInit {
         return 'Campo Obrigatório';
     }
 
-    if (fieldName === "nome" && field?.hasError('minlength')) {
-        const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 5;
-        return `Tamanho mínimo precisa ser de ${requiredLength} caracteres.`;
-        }
+    if (fieldName === "cnpj") {
+      if (isNaN(field?.value)) {
+        return `Este campo precisa ser numérico.`
+      }
 
-    if (fieldName === "cnpj" && field?.hasError('minlength')) {
-        const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 14;
-        return `Tamanho mínimo precisa ser de ${requiredLength} caracteres.`;
+      if (field?.hasError('minlength')) {
+          const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 14;
+          return `Tamanho mínimo precisa ser de ${requiredLength} caracteres.`;
+      }
+
+      if (field?.hasError('maxlength')) {
+          const requiredLength: number = field.errors ? field.errors['maxlength']['requiredLength'] : 14;
+          return `Tamanho máximo excedido de ${requiredLength} caracteres.`;
+      }
     }
 
-    if (fieldName === "cnpj" && field?.hasError('maxlength')) {
-      const requiredLength: number = field.errors ? field.errors['maxlength']['requiredLength'] : 14;
-      return `Tamanho máximo excedido de ${requiredLength} caracteres.`;
+    if (fieldName === "nome" && field?.hasError('minlength')) {
+      const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 5;
+      return `Tamanho mínimo precisa ser de ${requiredLength} caracteres.`;
     }
 
     if (fieldName === "cep") {
@@ -147,6 +153,25 @@ export class EmpresaInserirComponent implements OnInit {
           return `Tamanho do campo CEP precisa ser de ${requiredLength} caracteres numéricos.`;
         }
     }
+
+    if (fieldName === "numero") {
+      if (isNaN(field?.value)) {
+          return `Este campo precisa ser numérico.`
+      }
+
+      if (field?.hasError('minlength')) {
+        const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 1;
+        return `Tamanho mínimo precisa ser de ${requiredLength} caracteres.`;
+      }
+
+      if (field?.hasError('maxlength')) {
+        const requiredLength: number = field.errors ? field.errors['maxlength']['requiredLength'] : 5;
+        return `Tamanho máximo excedido de ${requiredLength} caracteres.`;
+      }
+
+  }
+
+
     return 'Campo Inválido';
   }
 

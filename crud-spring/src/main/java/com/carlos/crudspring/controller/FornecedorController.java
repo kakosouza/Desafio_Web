@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.carlos.crudspring.model.Empresa;
-import com.carlos.crudspring.repository.EmpresaRepository;
+import com.carlos.crudspring.model.Fornecedor;
+import com.carlos.crudspring.repository.FornecedorRepository;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -25,45 +25,50 @@ import lombok.AllArgsConstructor;
 
 @Validated
 @RestController     //Contém um end-point
-@RequestMapping("/api/empresas")    //End-point
+@RequestMapping("/api/fornecedores")    //End-point
 @AllArgsConstructor //Cria o construtor automaticamente
-public class EmpresaController {
+public class FornecedorController {
     
-    private final EmpresaRepository empresaRepository;
+    private final FornecedorRepository fornecedorRepository;
 
     @GetMapping 
-    public List<Empresa> list() {
-        return empresaRepository.findAll();
+    public List<Fornecedor> list() {
+        return fornecedorRepository.findAll();
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Empresa> findById(@PathVariable @NotNull @Positive Long id) {
-        return empresaRepository.findById(id)   
+    public ResponseEntity<Fornecedor> findById(@PathVariable @NotNull @Positive Long id) {
+        return fornecedorRepository.findById(id)   
         .map(record -> ResponseEntity.ok().body(record))
         .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Empresa create(@RequestBody Empresa empresa) {
-       return empresaRepository.save(empresa);
+    public Fornecedor create(@RequestBody @Valid Fornecedor fornecedor) {
+        //Verifica se é Pessoa Física
+/*        if (fornecedor.getChave().substring(0, 3).equals("000")) {
+            if (fornecedor.getDtnascimento() == null) {
+            };
+        };*/
+       return fornecedorRepository.save(fornecedor);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Empresa> update(@PathVariable @NotNull @Positive Long id,
-             @RequestBody @Valid Empresa empresa) {
-        return empresaRepository.findById(id)
+    public ResponseEntity<Fornecedor> update(@PathVariable @NotNull @Positive Long id, 
+            @RequestBody @Valid Fornecedor fornecedor) {
+        return fornecedorRepository.findById(id)
         .map(recordFound -> {
-            recordFound.setCnpj(empresa.getCnpj());
-            recordFound.setNome(empresa.getNome());
-            recordFound.setCep(empresa.getCep());
-            recordFound.setLogradouro(empresa.getLogradouro());
-            recordFound.setNumero(empresa.getNumero());
-            recordFound.setComplemento(empresa.getComplemento());
-            recordFound.setBairro(empresa.getBairro());
-            recordFound.setCidade(empresa.getCidade());
-            recordFound.setEstado(empresa.getEstado());
-            Empresa updated = empresaRepository.save(recordFound);
+            recordFound.setChave(fornecedor.getChave());
+            recordFound.setNome(fornecedor.getNome());
+            recordFound.setCep(fornecedor.getCep());
+            recordFound.setLogradouro(fornecedor.getLogradouro());
+            recordFound.setNumero(fornecedor.getNumero());
+            recordFound.setComplemento(fornecedor.getComplemento());
+            recordFound.setBairro(fornecedor.getBairro());
+            recordFound.setCidade(fornecedor.getCidade());
+            recordFound.setEstado(fornecedor.getEstado());
+            Fornecedor updated = fornecedorRepository.save(recordFound);
             return ResponseEntity.ok().body(updated);
         })
         .orElse(ResponseEntity.notFound().build());
@@ -71,9 +76,9 @@ public class EmpresaController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable @NotNull @Positive Long id) {
-        return empresaRepository.findById(id)
+        return fornecedorRepository.findById(id)
         .map(recordFound -> {
-            empresaRepository.deleteById(id);
+            fornecedorRepository.deleteById(id);
             return ResponseEntity.noContent().<Void>build();
         })
         .orElse(ResponseEntity.notFound().build());

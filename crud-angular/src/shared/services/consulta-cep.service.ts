@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 export class ConsultaCepService {
 
   constructor(
-    private http: HttpClient,
+    private http: HttpClient
   ) { }
 
 

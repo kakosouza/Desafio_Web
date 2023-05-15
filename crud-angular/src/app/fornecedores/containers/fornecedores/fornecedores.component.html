@@ -1,1 +1,19 @@
-<p>fornecedores works!</p>
+<mat-card>
+  <mat-toolbar color="BLACK"> Fornecedores Cadastrados </mat-toolbar>
+
+  <div class="column-flex mat-elevation-z8">
+    <app-fornecedores-list
+      *ngIf="fornecedores$ | async as fornecedores else loading"
+      [fornecedores]="fornecedores"
+      (add)="onAdd()"
+      (edit)="onEdit($event)"
+      (remove)="onRemove($event)"
+    ></app-fornecedores-list>
+
+    <ng-template #loading>
+      <div class="loading-spinner">
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>
+  </div>
+</mat-card>

@@ -6,7 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.carlos.crudspring.model.Empresa;
+import com.carlos.crudspring.model.Fornecedor;
 import com.carlos.crudspring.repository.EmpresaRepository;
+import com.carlos.crudspring.repository.FornecedorRepository;
 
 @SpringBootApplication
 public class CrudSpringApplication {
@@ -25,6 +27,22 @@ public class CrudSpringApplication {
 			e.setNome("ACCENTURE");
 
 			empresaRepository.save(e);
+
 		};
 	}
+
+//	@Bean 	//O Spring vai gerenciar tudo
+	CommandLineRunner initDataBase(FornecedorRepository fornecedorRepository) {
+		return args -> {
+			fornecedorRepository.deleteAll();
+
+			Fornecedor e = new Fornecedor();
+			e.setChave("00022222222222");
+			e.setNome("PEDRO SILVA");
+
+			fornecedorRepository.save(e);
+
+		};
+	}
+
 }

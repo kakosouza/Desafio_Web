@@ -20,7 +20,7 @@ export class FornecedoresComponent implements OnInit {
 
   fornecedores$: Observable<Fornecedor[]> | null = null;
 
-  readonly displayedColumns = ['cnpj','nome','actions'];
+  readonly displayedColumns = ['chave','nome','actions'];
 
 
   constructor(
