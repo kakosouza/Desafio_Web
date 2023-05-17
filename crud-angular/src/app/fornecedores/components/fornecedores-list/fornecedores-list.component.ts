@@ -13,7 +13,7 @@ export class FornecedoresListComponent implements OnInit{
   @Output() edit = new EventEmitter(false);
   @Output() remove = new EventEmitter(false);
 
-  readonly displayedColumns = ['cnpj','nome','actions'];
+  readonly displayedColumns = ['chave','nome','actions'];
 
   constructor() { }
 

@@ -16,7 +16,6 @@
 
       <mat-form-field appearance="outline" class="full-width">
         <input [(ngModel)]="cepInput" matInput placeholder="CEP" formControlName="cep" />
-        <mat-error *ngIf="form.get('cep')?.invalid">{{getErrorMessage("cep")}}</mat-error>
         <button mat-icon-button matSuffix (click)="onCep()">
           <mat-icon aria-hidden="false" fontIcon="home"></mat-icon>
         </button>

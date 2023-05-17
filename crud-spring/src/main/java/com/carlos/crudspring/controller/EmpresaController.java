@@ -3,7 +3,6 @@ package com.carlos.crudspring.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,70 +11,54 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.carlos.crudspring.dto.EmpresaDTO;
 import com.carlos.crudspring.model.Empresa;
-import com.carlos.crudspring.repository.EmpresaRepository;
+import com.carlos.crudspring.service.EmpresaService;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import lombok.AllArgsConstructor;
 
 @Validated
 @RestController     //Contém um end-point
 @RequestMapping("/api/empresas")    //End-point
-@AllArgsConstructor //Cria o construtor automaticamente
 public class EmpresaController {
     
-    private final EmpresaRepository empresaRepository;
+    private final EmpresaService empresaService;
+
+    public EmpresaController(EmpresaService empresaService) {
+        this.empresaService = empresaService;
+    }
 
     @GetMapping 
-    public List<Empresa> list() {
-        return empresaRepository.findAll();
+    public @ResponseBody List<EmpresaDTO> list() {
+        return empresaService.list();
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Empresa> findById(@PathVariable @NotNull @Positive Long id) {
-        return empresaRepository.findById(id)   
-        .map(record -> ResponseEntity.ok().body(record))
-        .orElse(ResponseEntity.notFound().build());
+    public EmpresaDTO findById(@PathVariable @NotNull @Positive Long id) {
+        return empresaService.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Empresa create(@RequestBody Empresa empresa) {
-       return empresaRepository.save(empresa);
+    public EmpresaDTO create(@RequestBody Empresa empresa) {
+       return empresaService.create(empresa);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Empresa> update(@PathVariable @NotNull @Positive Long id,
+    public EmpresaDTO update(@PathVariable @NotNull @Positive Long id,
              @RequestBody @Valid Empresa empresa) {
-        return empresaRepository.findById(id)
-        .map(recordFound -> {
-            recordFound.setCnpj(empresa.getCnpj());
-            recordFound.setNome(empresa.getNome());
-            recordFound.setCep(empresa.getCep());
-            recordFound.setLogradouro(empresa.getLogradouro());
-            recordFound.setNumero(empresa.getNumero());
-            recordFound.setComplemento(empresa.getComplemento());
-            recordFound.setBairro(empresa.getBairro());
-            recordFound.setCidade(empresa.getCidade());
-            recordFound.setEstado(empresa.getEstado());
-            Empresa updated = empresaRepository.save(recordFound);
-            return ResponseEntity.ok().body(updated);
-        })
-        .orElse(ResponseEntity.notFound().build());
+        return empresaService.update(id, empresa);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> delete(@PathVariable @NotNull @Positive Long id) {
-        return empresaRepository.findById(id)
-        .map(recordFound -> {
-            empresaRepository.deleteById(id);
-            return ResponseEntity.noContent().<Void>build();
-        })
-        .orElse(ResponseEntity.notFound().build());
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable @NotNull @Positive Long id) {
+        empresaService.delete(id);
     }
 }

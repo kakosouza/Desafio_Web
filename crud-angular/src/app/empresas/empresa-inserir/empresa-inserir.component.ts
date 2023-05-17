@@ -6,7 +6,6 @@ import { ActivatedRoute } from '@angular/router';
 import { EmpresasService } from '../services/empresas.service';
 import { Location } from '@angular/common';
 import { ConsultaCepService } from 'src/shared/services/consulta-cep.service';
-import { Empresa } from 'src/shared/models/empresa.model';
 
 @Component({
   selector: 'app-empresa-inserir',
@@ -34,8 +33,7 @@ export class EmpresaInserirComponent implements OnInit {
     cidade: [''],
     estado: ['', [Validators.minLength(2),
                  Validators.maxLength(2)]],
-    cep: ['', [Validators.minLength(8),
-               Validators.maxLength(8)]]
+    cep: ['']
   });
 
   constructor(private formBuilder: NonNullableFormBuilder,
@@ -45,7 +43,6 @@ export class EmpresaInserirComponent implements OnInit {
       private route: ActivatedRoute,
       private cepService: ConsultaCepService,
       private rotaAtiva: ActivatedRoute
-
       ) {
 //      this.
   }
@@ -85,7 +82,7 @@ export class EmpresaInserirComponent implements OnInit {
   }
 
   onCep() {
-      if (this.cepInput != null && this.cepInput !== ''){
+    if (this.cepInput != null && this.cepInput !== ''){
         this.cepService.buscarCep(this.cepInput)
         ?.subscribe(dados => this.populaDadosForm(dados));
       }
@@ -93,18 +90,17 @@ export class EmpresaInserirComponent implements OnInit {
 
   populaDadosForm(dados:any) {
     this.form.patchValue({
-//      cnpj: this.form.value.cnpj,
-//      nome: this.form.value.nome,
+      cnpj: this.form.value.cnpj,
+      nome: this.form.value.nome,
       logradouro: dados.logradouro,
-//      numero: this.form.value.numero,
-//      complemento: this.form.value.complemento,
+      numero: this.form.value.numero,
+      complemento: this.form.value.complemento,
       bairro: dados.bairro,
       cidade: dados.localidade,
       estado: dados.uf,
       cep: dados.cep
-  })
-}
-
+      });
+  }
 
   onSuccess() {
     this.snackBar.open('Empresa salva com sucesso!', '', {duration: 5000});
@@ -141,17 +137,6 @@ export class EmpresaInserirComponent implements OnInit {
     if (fieldName === "nome" && field?.hasError('minlength')) {
       const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 5;
       return `Tamanho mínimo precisa ser de ${requiredLength} caracteres.`;
-    }
-
-    if (fieldName === "cep") {
-        if (isNaN(field?.value)) {
-            return `Este campo precisa ser numérico.`
-        }
-
-        if ( field?.hasError('minlength') || field?.hasError('maxlength')) {
-          const requiredLength: number = field.errors ? field.errors['maxlength']['requiredLength'] : 8;
-          return `Tamanho do campo CEP precisa ser de ${requiredLength} caracteres numéricos.`;
-        }
     }
 
     if (fieldName === "numero") {

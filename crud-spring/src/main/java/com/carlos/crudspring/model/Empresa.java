@@ -1,5 +1,6 @@
 package com.carlos.crudspring.model;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.NumberFormat;
 
 import jakarta.persistence.Column;
@@ -22,11 +23,13 @@ public class Empresa {
     @NumberFormat
     @NotNull
     @Column(length = 14, nullable = false)
+    @Length(min = 14, max = 14)
     private String cnpj; 
 
     @NotBlank
     @NotNull
     @Column(length = 100, nullable = false)
+    @Length(max = 100)
     private String nome; 
 
     @Column(length = 8, nullable = true)
