@@ -4,5 +4,5 @@ import com.carlos.crudspring.model.Empresa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface EmpresaRepository  extends JpaRepository<Empresa, Long> {
+public interface EmpresaRepository1  extends JpaRepository<Empresa, String> {
 }

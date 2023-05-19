@@ -25,6 +25,10 @@ export class EmpresasService {
       );
   }
 
+  loadByCnpj(cnpj: string) {
+    return this.httpClient.get<Empresa>(`${this.API}/${cnpj}`);
+  }
+
   loadById(id: number) {
     return this.httpClient.get<Empresa>(`${this.API}/${id}`);
 

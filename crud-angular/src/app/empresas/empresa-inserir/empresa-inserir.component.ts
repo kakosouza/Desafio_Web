@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
 
 import { EmpresasService } from '../services/empresas.service';
 import { Location } from '@angular/common';
 import { ConsultaCepService } from 'src/shared/services/consulta-cep.service';
+
+import { Empresa } from 'src/shared/models/empresa.model';
 
 @Component({
   selector: 'app-empresa-inserir',
@@ -16,7 +17,11 @@ export class EmpresaInserirComponent implements OnInit {
 
 //  form: FormGroup;
   public cepInput: string = '';
+  public cnpjInput: string = '';
   public dados = new XMLHttpRequest();
+  private empresa: Empresa = new  Empresa;
+
+//  private  cnpjValor = of(Empresa);
 
   form = this.formBuilder.group({
     id: [0],
@@ -40,9 +45,7 @@ export class EmpresaInserirComponent implements OnInit {
       private service: EmpresasService,
       private snackBar: MatSnackBar,
       private location: Location,
-      private route: ActivatedRoute,
-      private cepService: ConsultaCepService,
-      private rotaAtiva: ActivatedRoute
+      private cepService: ConsultaCepService
       ) {
 //      this.
   }
@@ -79,6 +82,20 @@ export class EmpresaInserirComponent implements OnInit {
 
   onCancel(): void {
       this.location.back();
+  }
+
+  onCnpj() {
+    if (this.cnpjInput != null && this.cnpjInput !== '') {
+      this.service.loadByCnpj(this.cepInput)
+           .subscribe(item => this.empresa = item)
+
+      console.log('CnpjValor');
+      console.log(this.empresa.cnpj);
+      if (this.form.value.cnpj === this.empresa.cnpj) {
+        this.snackBar.open('CNPJ já cadastrado.', '', {duration: 5000});
+        this.form.value.cnpj = '';
+      }
+    }
   }
 
   onCep() {
