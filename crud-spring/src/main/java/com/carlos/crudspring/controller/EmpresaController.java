@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.carlos.crudspring.dto.EmpresaDTO;
-import com.carlos.crudspring.model.Empresa;
 import com.carlos.crudspring.service.EmpresaService;
 
 import jakarta.validation.Valid;
@@ -46,13 +45,13 @@ public class EmpresaController {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public EmpresaDTO create(@RequestBody Empresa empresa) {
+    public EmpresaDTO create(@RequestBody @Valid @NotNull EmpresaDTO empresa) {
        return empresaService.create(empresa);
     }
 
     @PutMapping("{id}")
     public EmpresaDTO update(@PathVariable @NotNull @Positive Long id,
-             @RequestBody @Valid Empresa empresa) {
+             @RequestBody @Valid @NotNull EmpresaDTO empresa) {
         return empresaService.update(id, empresa);
     }
 

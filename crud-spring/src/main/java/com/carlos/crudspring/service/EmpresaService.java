@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.carlos.crudspring.dto.EmpresaDTO;
 import com.carlos.crudspring.dto.mapper.EmpresaMapper;
 import com.carlos.crudspring.exception.RecordNotFoundException;
-import com.carlos.crudspring.model.Empresa;
 import com.carlos.crudspring.repository.EmpresaRepository;
 
 import jakarta.validation.Valid;
@@ -39,24 +39,24 @@ public class EmpresaService {
             .orElseThrow(() -> new RecordNotFoundException(id));
     }
 
-    public EmpresaDTO create(@Valid Empresa empresa) {
-        return empresaMapper.toDTO(empresaRepository.save(empresa));
+    public EmpresaDTO create(@RequestBody @Valid @NotNull EmpresaDTO empresa) {
+        return empresaMapper.toDTO(empresaRepository.save(empresaMapper.toEntity(empresa)));
     }
 
-    public EmpresaDTO update(@NotNull @Positive Long id, @Valid Empresa empresa) {
+    public EmpresaDTO update(@NotNull @Positive Long id, @Valid @NotNull EmpresaDTO empresa) {
         return empresaRepository.findById(id)
         .map(recordFound -> {
-            recordFound.setCnpj(empresa.getCnpj());
-            recordFound.setNome(empresa.getNome());
-            recordFound.setCep(empresa.getCep());
-            recordFound.setLogradouro(empresa.getLogradouro());
-            recordFound.setNumero(empresa.getNumero());
-            recordFound.setComplemento(empresa.getComplemento());
-            recordFound.setBairro(empresa.getBairro());
-            recordFound.setCidade(empresa.getCidade());
-            recordFound.setEstado(empresa.getEstado());
-            return empresaRepository.save(recordFound);
-        }).map(empresaMapper::toDTO).orElseThrow(() -> new RecordNotFoundException(id));
+            recordFound.setCnpj(empresa.cnpj());
+            recordFound.setNome(empresa.nome());
+            recordFound.setCep(empresa.cep());
+            recordFound.setLogradouro(empresa.logradouro());
+            recordFound.setNumero(empresa.numero());
+            recordFound.setComplemento(empresa.complemento());
+            recordFound.setBairro(empresa.bairro());
+            recordFound.setCidade(empresa.cidade());
+            recordFound.setEstado(empresa.estado());
+            return empresaMapper.toDTO(empresaRepository.save(recordFound));
+        }).orElseThrow(() -> new RecordNotFoundException(id));
     }
 
     public void delete(@PathVariable @NotNull @Positive Long id) {

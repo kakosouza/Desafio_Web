@@ -46,11 +46,6 @@ public class FornecedorController {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public Fornecedor create(@RequestBody @Valid Fornecedor fornecedor) {
-        //Verifica se é Pessoa Física
-/*        if (fornecedor.getChave().substring(0, 3).equals("000")) {
-            if (fornecedor.getDtnascimento() == null) {
-            };
-        };*/
        return fornecedorRepository.save(fornecedor);
     }
 
@@ -68,6 +63,10 @@ public class FornecedorController {
             recordFound.setBairro(fornecedor.getBairro());
             recordFound.setCidade(fornecedor.getCidade());
             recordFound.setEstado(fornecedor.getEstado());
+            recordFound.setDtnascimento(fornecedor.getDtnascimento());
+            recordFound.setEmail(fornecedor.getEmail());
+            recordFound.setRg(fornecedor.getRg());
+            recordFound.setFstatus(fornecedor.getFstatus());
             Fornecedor updated = fornecedorRepository.save(recordFound);
             return ResponseEntity.ok().body(updated);
         })

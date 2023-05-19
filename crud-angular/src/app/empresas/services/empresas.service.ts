@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Empresa } from 'src/shared/models/empresa.model';
 
@@ -11,7 +12,9 @@ export class EmpresasService {
   private readonly API = 'api/empresas';
 
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+      private router: Router
+    ) { }
 
   list() {
     return this.httpClient.get<Empresa[]>(this.API)
@@ -38,7 +41,7 @@ export class EmpresasService {
   }
 
   private create(record: Partial<Empresa>) {
-    return this.httpClient.post<Empresa>(this.API, record).pipe(first());
+      return this.httpClient.post<Empresa>(this.API, record).pipe(first());
   }
 
   private update(record: Partial<Empresa>) {
