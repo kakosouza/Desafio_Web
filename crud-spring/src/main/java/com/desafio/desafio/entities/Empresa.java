@@ -2,11 +2,17 @@ package com.desafio.desafio.entities;
 
 import java.io.Serializable;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Empresa implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String cnpj;		
+    @Id
+    private String cnpj;	
+    	
     private String nome;		
     private String logradouro;
     private Number numero;
