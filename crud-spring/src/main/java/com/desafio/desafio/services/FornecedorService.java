@@ -24,5 +24,32 @@ public class FornecedorService {
         return obj.get();
     }
 
+    public Fornecedor insert(Fornecedor obj) {
+        return repository.save(obj);
+    }
 
+    public void delete(String chave) {
+        repository.deleteById(chave);
+    }
+
+    public Fornecedor update(String chave, Fornecedor obj) {
+        Fornecedor entity = repository.getReferenceById(chave);
+        updateData(entity, obj);
+        return repository.save(entity);
+    }
+
+    private void updateData(Fornecedor entity, Fornecedor obj) {
+        entity.setNome(obj.getNome());
+        entity.setCep(obj.getCep());
+        entity.setLogradouro(obj.getLogradouro());
+        entity.setNumero(obj.getNumero());
+        entity.setComplemento(obj.getComplemento());
+        entity.setBairro(obj.getBairro());
+        entity.setCidade(obj.getCidade());
+        entity.setEstado(obj.getEstado());
+        entity.setDtnascimento(obj.getDtnascimento());
+        entity.setEmail(obj.getEmail());
+        entity.setRg(obj.getRg());
+        entity.setFstatus(obj.getFstatus());
+    }
 }

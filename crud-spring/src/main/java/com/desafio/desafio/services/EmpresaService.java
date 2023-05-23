@@ -27,4 +27,25 @@ public class EmpresaService {
     public Empresa insert(Empresa obj) {
         return repository.save(obj);
     }
+
+    public void delete(String cnpj) {
+        repository.deleteById(cnpj);
+    }
+
+    public Empresa update(String cnpj, Empresa obj) {
+        Empresa entity = repository.getReferenceById(cnpj);
+        updateData(entity, obj);
+        return repository.save(entity);
+    }
+
+    private void updateData(Empresa entity, Empresa obj) {
+        entity.setNome(obj.getNome());
+        entity.setCep(obj.getCep());
+        entity.setLogradouro(obj.getLogradouro());
+        entity.setNumero(obj.getNumero());
+        entity.setComplemento(obj.getComplemento());
+        entity.setBairro(obj.getBairro());
+        entity.setCidade(obj.getCidade());
+        entity.setEstado(obj.getEstado());
+    }
 }
