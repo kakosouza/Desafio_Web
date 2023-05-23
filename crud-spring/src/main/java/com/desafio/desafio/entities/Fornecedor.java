@@ -2,9 +2,14 @@ package com.desafio.desafio.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Fornecedor implements Serializable {
@@ -26,7 +31,13 @@ public class Fornecedor implements Serializable {
     private Date dtnascimento;
     private Number rg;
     private Number fstatus;
-    
+
+    @ManyToMany
+    @JoinTable(name = "fornempr",
+    joinColumns = @JoinColumn(name = "fornid"),
+    inverseJoinColumns = @JoinColumn(name = "emprid"))
+    private Set<Empresa> empresas = new HashSet<>();
+
     public Fornecedor() {
     }
 
@@ -47,6 +58,7 @@ public class Fornecedor implements Serializable {
         this.fstatus = fstatus;
     }
 
+    
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
@@ -153,6 +165,10 @@ public class Fornecedor implements Serializable {
 
     public void setFstatus(Number fstatus) {
         this.fstatus = fstatus;
+    }
+
+    public Set<Empresa> getEmpresas() {
+        return empresas;
     }
 
     @Override

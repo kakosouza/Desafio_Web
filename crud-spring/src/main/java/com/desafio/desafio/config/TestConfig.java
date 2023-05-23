@@ -30,7 +30,14 @@ public class TestConfig implements CommandLineRunner {
         empresaRepository.saveAll(Arrays.asList(e1, e2));
 
         Fornecedor f1 = new Fornecedor("00011111111111", "ROBERTO", null, null, null, null, null, null, null, null, null, null, null);
+        Fornecedor f2 = new Fornecedor("33333333333333", "FRANCISCO", null, null, null, null, null, null, null, null, null, null, null);
 
-        fornecedorRepository.saveAll(Arrays.asList(f1));
+        fornecedorRepository.saveAll(Arrays.asList(f1, f2));
+
+        f1.getEmpresas().add(e1);
+        f1.getEmpresas().add(e2);
+        f2.getEmpresas().add(e2);
+
+        fornecedorRepository.saveAll(Arrays.asList(f1, f2));
     }
 }

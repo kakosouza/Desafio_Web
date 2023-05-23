@@ -19,8 +19,8 @@ public class FornecedorService {
         return repository.findAll();
     }
 
-    public Fornecedor findById(String cnpj) {
-        Optional<Fornecedor> obj = repository.findById(cnpj);
+    public Fornecedor findById(String chave) {
+        Optional<Fornecedor> obj = repository.findById(chave);
         return obj.get();
     }
 
