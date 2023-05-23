@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.desafio.desafio.entities.Empresa;
 import com.desafio.desafio.repositories.EmpresaRepository;
+import com.desafio.desafio.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class EmpresaService {
@@ -21,7 +22,7 @@ public class EmpresaService {
 
     public Empresa findById(String cnpj) {
         Optional<Empresa> obj = repository.findById(cnpj);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(cnpj));
     }
 
     public Empresa insert(Empresa obj) {
