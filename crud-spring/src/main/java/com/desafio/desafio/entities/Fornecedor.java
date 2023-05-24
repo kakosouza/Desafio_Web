@@ -43,6 +43,7 @@ public class Fornecedor implements Serializable {
 
     public Fornecedor(String chave, String nome, String logradouro, Number numero, String complemento, String bairro,
             String cidade, String estado, String cep, String email, Date dtnascimento, Number rg, Number fstatus) {
+        super();
         this.chave = chave;
         this.nome = nome;
         this.logradouro = logradouro;

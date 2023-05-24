@@ -4,10 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.desafio.desafio.entities.Fornecedor;
 import com.desafio.desafio.repositories.FornecedorRepository;
+import com.desafio.desafio.services.exceptions.DatabaseException;
+import com.desafio.desafio.services.exceptions.ResourceNotFoundException;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class FornecedorService {
@@ -21,7 +27,7 @@ public class FornecedorService {
 
     public Fornecedor findById(String chave) {
         Optional<Fornecedor> obj = repository.findById(chave);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(chave));
     }
 
     public Fornecedor insert(Fornecedor obj) {
@@ -29,13 +35,26 @@ public class FornecedorService {
     }
 
     public void delete(String chave) {
-        repository.deleteById(chave);
+        try {
+            repository.deleteById(chave);
+        }
+        catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException(chave);        
+        }
+        catch (DataIntegrityViolationException e) {
+			throw new DatabaseException(e.getMessage());
+		}
     }
 
     public Fornecedor update(String chave, Fornecedor obj) {
-        Fornecedor entity = repository.getReferenceById(chave);
-        updateData(entity, obj);
-        return repository.save(entity);
+        try {
+            Fornecedor entity = repository.getReferenceById(chave);
+            updateData(entity, obj);
+            return repository.save(entity);
+        }
+        catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(chave);
+        }
     }
 
     private void updateData(Fornecedor entity, Fornecedor obj) {

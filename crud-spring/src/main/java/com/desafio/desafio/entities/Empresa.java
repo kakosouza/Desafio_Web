@@ -36,6 +36,7 @@ public class Empresa implements Serializable {
 
     public Empresa(String cnpj, String nome, String logradouro, Number numero, String complemento, String bairro,
             String cidade, String estado, String cep) {
+        super();
         this.cnpj = cnpj;
         this.nome = nome;
         this.logradouro = logradouro;
