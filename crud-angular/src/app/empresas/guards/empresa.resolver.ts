@@ -19,10 +19,6 @@ export class EmpresaResolver implements Resolve<Empresa>  {
     if (route.params && route.params['id']) {
       return this.service.loadById(route.params['id']);
     }
-
-    if (route.params && route.params['cnpj']) {
-      return this.service.loadByCnpj(route.params['cnpj']);
-    }
     return of({ id: 0, cnpj: '', nome: '', cep: '', logradouro: '', numero: 0,
                 complemento: '', bairro: '', cidade: '', estado: ''});
   }

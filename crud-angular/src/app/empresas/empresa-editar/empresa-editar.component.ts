@@ -14,7 +14,7 @@ import { Empresa } from 'src/shared/models/empresa.model';
 })
 export class EmpresaEditarComponent implements OnInit {
 
-  formEdit: FormGroup;
+  formEdit!: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
       private service: EmpresasService,

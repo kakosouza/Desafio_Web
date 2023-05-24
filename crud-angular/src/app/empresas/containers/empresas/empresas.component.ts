@@ -28,7 +28,9 @@ export class EmpresasComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar
-  ) {
+  ) { }
+
+  ngOnInit(): void {
     this.refresh();
   }
 
@@ -48,15 +50,12 @@ export class EmpresasComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
-
   onAdd() {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 
   onEdit(empresa: Empresa) {
-    this.router.navigate(['edit', empresa.id], {relativeTo: this.route });
+    this.router.navigate(['edit', empresa.id], {relativeTo: this.route});
   }
 
   onRemove(empresa: Empresa) {

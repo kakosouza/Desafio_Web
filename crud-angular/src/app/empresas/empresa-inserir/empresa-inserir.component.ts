@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { EmpresasService } from '../services/empresas.service';
@@ -7,6 +8,8 @@ import { Location } from '@angular/common';
 import { ConsultaCepService } from 'src/shared/services/consulta-cep.service';
 
 import { Empresa } from 'src/shared/models/empresa.model';
+import { ActivatedRoute } from '@angular/router';
+import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-empresa-inserir',
@@ -15,7 +18,8 @@ import { Empresa } from 'src/shared/models/empresa.model';
 })
 export class EmpresaInserirComponent implements OnInit {
 
-//  form: FormGroup;
+  form!: FormGroup;
+
   public cepInput: string = '';
   public cnpjInput: string = '';
   public dados = new XMLHttpRequest();
@@ -23,55 +27,43 @@ export class EmpresaInserirComponent implements OnInit {
 
 //  private  cnpjValor = of(Empresa);
 
-  form = this.formBuilder.group({
-    id: [0],
-    cnpj: ['', [Validators.required,
-                Validators.minLength(14),
-                Validators.maxLength(14)]],
-    nome: ['', [Validators.required,
-                Validators.minLength(5),
-                Validators.maxLength(200)]],
-    logradouro: [''],
-    numero: [0],
-    complemento: [''],
-    bairro: [''],
-    cidade: [''],
-    estado: ['', [Validators.minLength(2),
-                 Validators.maxLength(2)]],
-    cep: ['']
-  });
-
   constructor(private formBuilder: NonNullableFormBuilder,
       private service: EmpresasService,
       private snackBar: MatSnackBar,
+      private dialog: MatDialog,
       private location: Location,
-      private cepService: ConsultaCepService
-      ) {
-//      this.
-  }
+      private cepService: ConsultaCepService,
+      private route: ActivatedRoute
+      ) { }
+
 
   ngOnInit() {
-/*    const empresa: Empresa = this.route.snapshot.data['empresa'];
-    this.form.setValue({
-      id: empresa.id,
-      cnpj: empresa.cnpj,
-      nome: empresa.nome,
-      cep: empresa.cep,
-      logradouro: empresa.logradouro,
-      numero: empresa.numero,
-      complemento: empresa.complemento,
-      bairro: empresa.bairro,
-      cidade: empresa.cidade,
-      estado: empresa.estado
-    });*/
+    const empresa: Empresa = this.route.snapshot.data['empresa'];
+    this.form = this.formBuilder.group({
+      id: [empresa.id],
+      cnpj: [empresa.cnpj, [Validators.required,
+                  Validators.minLength(14),
+                  Validators.maxLength(14)]],
+      nome: [empresa.nome, [Validators.required,
+                  Validators.minLength(5),
+                  Validators.maxLength(200)]],
+      logradouro: [empresa.logradouro],
+      numero: [empresa.numero],
+      complemento: [empresa.complemento],
+      bairro: [empresa.bairro],
+      cidade: [empresa.cidade],
+      estado: [empresa.estado, [Validators.minLength(2),
+                   Validators.maxLength(2)]],
+      cep: [empresa.cep]
+    });
    }
 
   onSubmit() {
-    if (this.form.valid !== null) {
+    if (this.form.valid) {
       console.log(this.form.value);
-      this.service.save(this.form.value).subscribe(data => {
-        this.onSuccess();
-        this.form.reset();
+      this.service.save(this.form.value as Empresa).subscribe({
+        next: () => this.onSuccess(),
+        error: () => this.onError()
       });
     }
     else  {
@@ -125,7 +117,8 @@ export class EmpresaInserirComponent implements OnInit {
   }
 
   onError() {
-    this.snackBar.open('Erro ao salvar Empresa.', '', {duration: 5000});
+    this.dialog.open(ErrorDialogComponent, {
+     data: 'Erro ao salvar Empresa.'});
   }
 
   getErrorMessage(fieldName: string) {
@@ -171,10 +164,7 @@ export class EmpresaInserirComponent implements OnInit {
         return `Tamanho máximo excedido de ${requiredLength} caracteres.`;
       }
 
-  }
-
-
+    }
     return 'Campo Inválido';
   }
-
 }
