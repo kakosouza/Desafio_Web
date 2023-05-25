@@ -44,10 +44,10 @@ public class EmpresaController {
         return empresaService.findById(id);
     }
 
-    @GetMapping("{cnpj}")
-    public EmpresaDTO findByCnpj(@PathVariable @NotNull String cnpj) {
-        return empresaService.findByCnpj(cnpj);
-    }
+//    @GetMapping("{cnpj}")
+//    public EmpresaDTO findByCnpj(@PathVariable @NotNull String cnpj) {
+//        return empresaService.findByCnpj(cnpj);
+//    }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)

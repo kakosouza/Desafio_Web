@@ -14,8 +14,7 @@ export class EmpresaResolver implements Resolve<Empresa>  {
 
   constructor(private service: EmpresasService) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Empresa>
-  |Promise<Empresa>|Empresa  {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Empresa> {
     if (route.params && route.params['id']) {
       return this.service.loadById(route.params['id']);
     }

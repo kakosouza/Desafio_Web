@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -18,16 +18,24 @@ import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-d
 })
 export class EmpresaInserirComponent implements OnInit {
 
-  form!: FormGroup;
+  form = this.formBuilder.group({
+    cnpj: [''],
+    nome: [''],
+    logradouro: [''],
+    numero: [0],
+    complemento: [''],
+    bairro: [''],
+    cidade: [''],
+    estado: [''],
+    cep: ['']
+  });
 
   public cepInput: string = '';
   public cnpjInput: string = '';
   public dados = new XMLHttpRequest();
   private empresa: Empresa = new  Empresa;
 
-//  private  cnpjValor = of(Empresa);
-
-  constructor(private formBuilder: NonNullableFormBuilder,
+  constructor(private formBuilder: FormBuilder,
       private service: EmpresasService,
       private snackBar: MatSnackBar,
       private dialog: MatDialog,
@@ -38,37 +46,13 @@ export class EmpresaInserirComponent implements OnInit {
 
 
   ngOnInit() {
-    const empresa: Empresa = this.route.snapshot.data['empresa'];
-    this.form = this.formBuilder.group({
-      id: [empresa.id],
-      cnpj: [empresa.cnpj, [Validators.required,
-                  Validators.minLength(14),
-                  Validators.maxLength(14)]],
-      nome: [empresa.nome, [Validators.required,
-                  Validators.minLength(5),
-                  Validators.maxLength(200)]],
-      logradouro: [empresa.logradouro],
-      numero: [empresa.numero],
-      complemento: [empresa.complemento],
-      bairro: [empresa.bairro],
-      cidade: [empresa.cidade],
-      estado: [empresa.estado, [Validators.minLength(2),
-                   Validators.maxLength(2)]],
-      cep: [empresa.cep]
-    });
-   }
+  }
+
 
   onSubmit() {
-    if (this.form.valid) {
-      console.log(this.form.value);
-      this.service.save(this.form.value as Empresa).subscribe({
-        next: () => this.onSuccess(),
-        error: () => this.onError()
-      });
-    }
-    else  {
-      this.service.save(this.form.value).subscribe(error => this.onError());
-    }
+      this.service.save(this.form.value as Empresa)
+      .subscribe(next => this.onSuccess(), error => this.onError()
+      );
     this.form.reset();
   }
 

@@ -23,15 +23,15 @@ import jakarta.validation.constraints.Positive;
 public class EmpresaService {
 
     private final EmpresaRepository empresaRepository;
-    private final EmpresaRepository1 empresaRepository1;
+//    private final EmpresaRepository1 empresaRepository1;
     private final EmpresaMapper empresaMapper;
 
-    public EmpresaService(EmpresaRepository empresaRepository, EmpresaMapper empresaMapper, 
-    EmpresaRepository1 empresaRepository1
+    public EmpresaService(EmpresaRepository empresaRepository, EmpresaMapper empresaMapper
+//EmpresaRepository1 empresaRepository1
     ) {
         this.empresaRepository = empresaRepository;
         this.empresaMapper = empresaMapper;
-        this.empresaRepository1 = empresaRepository1;
+//        this.empresaRepository1 = empresaRepository1;
     }
 
     public List<EmpresaDTO> list() {
@@ -44,10 +44,10 @@ public class EmpresaService {
             .orElseThrow(() -> new RecordNotFoundException(id));
     }
 
-    public EmpresaDTO findByCnpj(@PathVariable @NotNull String cnpj) {
-        return empresaRepository1.findById(cnpj).map(empresaMapper::toDTO)
-            .orElseThrow(() -> new RecordNotFoundException(cnpj));
-    }
+//    public EmpresaDTO findByCnpj(@PathVariable @NotNull String cnpj) {
+//        return empresaRepository1.findById(cnpj).map(empresaMapper::toDTO)
+//            .orElseThrow(() -> new RecordNotFoundException(cnpj));
+//    }
 
     public EmpresaDTO create(@RequestBody @Valid @NotNull EmpresaDTO empresa) {
         return empresaMapper.toDTO(empresaRepository.save(empresaMapper.toEntity(empresa)));
