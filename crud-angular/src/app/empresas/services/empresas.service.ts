@@ -35,14 +35,14 @@ export class EmpresasService {
   }
 
   save(record: Partial<Empresa>) {
-    return this.httpClient.post<Empresa>(this.API, record).pipe(first());
-/*    console.log(record);
+//    return this.httpClient.post<Empresa>(this.API, record).pipe(first());
+    console.log(record);
     if (record.id) {
       console.log('Update')
       return this.update(record);
     }
       console.log('Create')
-      return this.create(record);*/
+      return this.create(record);
   }
 
   private create(record: Partial<Empresa>) {

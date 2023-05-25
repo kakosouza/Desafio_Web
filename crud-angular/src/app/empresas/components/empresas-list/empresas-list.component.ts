@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Empresa } from 'src/shared/models/empresa.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-empresas-list',
@@ -12,10 +13,13 @@ export class EmpresasListComponent implements OnInit{
   @Output() add = new EventEmitter(false);
   @Output() edit = new EventEmitter(false);
   @Output() remove = new EventEmitter(false);
+  @Output() fornec = new EventEmitter(false);
 
   readonly displayedColumns = ['cnpj','nome','actions'];
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
@@ -30,5 +34,9 @@ export class EmpresasListComponent implements OnInit{
 
   onDelete(empresa: Empresa): void {
     this.remove.emit(empresa);
+  }
+
+  onFornec(empresa: Empresa) {
+    this.fornec.emit(empresa);
   }
 }

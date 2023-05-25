@@ -9,6 +9,7 @@ import { EmpresasComponent } from './containers/empresas/empresas.component';
 import { EmpresaEditarComponent } from './empresa-editar/empresa-editar.component';
 import { EmpresaInserirComponent } from './empresa-inserir/empresa-inserir.component';
 import { EmpresasRoutingModule } from './empresas-routing.module';
+import { EmpresaLigarComponent } from './empresa-ligar/empresa-ligar.component';
 
 
 
@@ -17,7 +18,8 @@ import { EmpresasRoutingModule } from './empresas-routing.module';
     EmpresasComponent,
     EmpresaEditarComponent,
     EmpresasListComponent,
-    EmpresaInserirComponent
+    EmpresaInserirComponent,
+    EmpresaLigarComponent
   ],
   imports: [
     CommonModule,

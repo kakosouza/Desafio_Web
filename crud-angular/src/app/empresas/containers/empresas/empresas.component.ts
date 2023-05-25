@@ -81,5 +81,9 @@ export class EmpresasComponent implements OnInit {
           }
       });
   }
+
+  onFornec(empresa: Empresa) {
+    this.router.navigate(['fornec', empresa.id], {relativeTo: this.route});
+  }
 }
 

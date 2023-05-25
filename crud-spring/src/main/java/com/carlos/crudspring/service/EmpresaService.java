@@ -12,7 +12,6 @@ import com.carlos.crudspring.dto.EmpresaDTO;
 import com.carlos.crudspring.dto.mapper.EmpresaMapper;
 import com.carlos.crudspring.exception.RecordNotFoundException;
 import com.carlos.crudspring.repository.EmpresaRepository;
-import com.carlos.crudspring.repository.EmpresaRepository1;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -23,15 +22,12 @@ import jakarta.validation.constraints.Positive;
 public class EmpresaService {
 
     private final EmpresaRepository empresaRepository;
-//    private final EmpresaRepository1 empresaRepository1;
     private final EmpresaMapper empresaMapper;
 
     public EmpresaService(EmpresaRepository empresaRepository, EmpresaMapper empresaMapper
-//EmpresaRepository1 empresaRepository1
     ) {
         this.empresaRepository = empresaRepository;
         this.empresaMapper = empresaMapper;
-//        this.empresaRepository1 = empresaRepository1;
     }
 
     public List<EmpresaDTO> list() {
@@ -43,11 +39,6 @@ public class EmpresaService {
         return empresaRepository.findById(id).map(empresaMapper::toDTO)
             .orElseThrow(() -> new RecordNotFoundException(id));
     }
-
-//    public EmpresaDTO findByCnpj(@PathVariable @NotNull String cnpj) {
-//        return empresaRepository1.findById(cnpj).map(empresaMapper::toDTO)
-//            .orElseThrow(() -> new RecordNotFoundException(cnpj));
-//    }
 
     public EmpresaDTO create(@RequestBody @Valid @NotNull EmpresaDTO empresa) {
         return empresaMapper.toDTO(empresaRepository.save(empresaMapper.toEntity(empresa)));
