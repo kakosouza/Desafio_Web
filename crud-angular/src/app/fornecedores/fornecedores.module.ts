@@ -10,8 +10,6 @@ import { FornecedorEditarComponent } from '../fornecedores/fornecedor-editar/for
 import { FornecedorInserirComponent } from '../fornecedores/fornecedor-inserir/fornecedor-inserir.component';
 import { FornecedoresRoutingModule } from '../fornecedores/fornecedores-routing.module';
 
-
-
 @NgModule({
   declarations: [
     FornecedoresComponent,

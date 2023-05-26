@@ -53,10 +53,12 @@
         <input matInput placeholder="RG" formControlName="rg" />
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <input matInput placeholder="Data Nascimento" formControlName="dtnascimento" />
+      <mat-form-field class="min-width">
+        <mat-label>Data de Nascimento</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dtnascimento" name="dtnascimento">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-
     </form>
   </mat-card-content>
 

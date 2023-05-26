@@ -17,7 +17,7 @@ import { FornecedoresService } from '../services/fornecedores.service';
 })
 export class FornecedorInserirComponent implements OnInit {
 
-  private dataIni: Date = new Date();
+  //private dataIni: Date = new Date();
 
   form = this.formBuilder.group({
     chave: [''],
@@ -31,7 +31,7 @@ export class FornecedorInserirComponent implements OnInit {
     estado: [''],
     rg: [0],
     email: [''],
-    dtnascimento: [this.dataIni],
+    dtnascimento: ['2023-08-01'],
     fstatus: [0]
   });
 
