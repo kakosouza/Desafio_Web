@@ -1,15 +1,14 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
-import { EmpresasService } from '../services/empresas.service';
-import { Location } from '@angular/common';
-import { ConsultaCepService } from 'src/shared/services/consulta-cep.service';
-
-import { Empresa } from 'src/shared/models/empresa.model';
 import { ActivatedRoute } from '@angular/router';
 import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
+import { Empresa } from 'src/shared/models/empresa.model';
+import { ConsultaCepService } from 'src/shared/services/consulta-cep.service';
+
+import { EmpresasService } from '../services/empresas.service';
 
 @Component({
   selector: 'app-empresa-inserir',

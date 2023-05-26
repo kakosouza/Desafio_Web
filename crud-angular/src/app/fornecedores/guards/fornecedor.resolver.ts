@@ -7,12 +7,16 @@ import { Resolve } from '../../fornecedores/guards/resolve';
 import { FornecedoresService } from '../services/fornecedores.service';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class FornecedorResolver implements Resolve<Fornecedor>  {
 
-  constructor(private service: FornecedoresService) { }
+  private dataIni: Date = new Date();
+
+  constructor(private service: FornecedoresService
+    ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Fornecedor>
   |Promise<Fornecedor>|Fornecedor  {
@@ -21,6 +25,6 @@ export class FornecedorResolver implements Resolve<Fornecedor>  {
     }
     return of({ id: 0, chave: '', nome: '', cep: '', logradouro: '', numero: 0,
                 complemento: '', bairro: '', cidade: '', estado: '', rg: 0,
-                email: '', fstatus: 0});
+                email: '', dtnascimento: this.dataIni, fstatus: 0});
   }
 }

@@ -18,7 +18,7 @@ public class CrudSpringApplication {
 	}
 
 	@Bean 	//O Spring vai gerenciar tudo
- 	CommandLineRunner initDataBase(EmpresaRepository empresaRepository) {
+/* 	CommandLineRunner initDataBase(EmpresaRepository empresaRepository) {
 		return args -> {
 			empresaRepository.deleteAll();
 
@@ -29,7 +29,7 @@ public class CrudSpringApplication {
 			empresaRepository.save(e);
 
 		};
-	}
+	}*/
 
 //	@Bean 	//O Spring vai gerenciar tudo
 	CommandLineRunner initDataBase(FornecedorRepository fornecedorRepository) {

@@ -55,9 +55,9 @@ public class FornecedorService {
             recordFound.setBairro(fornecedor.bairro());
             recordFound.setCidade(fornecedor.cidade());
             recordFound.setEstado(fornecedor.estado());
-            recordFound.setDtnascimento(fornecedor.dtnascimento());
-            recordFound.setEmail(fornecedor.email());
             recordFound.setRg(fornecedor.rg());
+            recordFound.setEmail(fornecedor.email());
+            recordFound.setDtnascimento(fornecedor.dtnascimento());
             recordFound.setFstatus(fornecedor.fstatus());
             return fornecedorMapper.toDTO(fornecedorRepository.save(recordFound));
         }).orElseThrow(() -> new RecordNotFoundException(id));

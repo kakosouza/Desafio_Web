@@ -6,10 +6,9 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ConfirmationDialogComponent } from 'src/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
-
-import { FornecedoresService } from '../../services/fornecedores.service';
 import { Fornecedor } from 'src/shared/models/fornecedor.model';
 
+import { FornecedoresService } from '../../services/fornecedores.service';
 
 @Component({
   selector: 'app-fornecedores',
@@ -29,7 +28,9 @@ export class FornecedoresComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar
-  ) {
+  ) {  }
+
+  ngOnInit(): void {
     this.refresh();
   }
 
@@ -47,9 +48,6 @@ export class FornecedoresComponent implements OnInit {
     this.dialog.open(ErrorDialogComponent, {
       data: errorMsg
     });
-  }
-
-  ngOnInit(): void {
   }
 
   onAdd() {

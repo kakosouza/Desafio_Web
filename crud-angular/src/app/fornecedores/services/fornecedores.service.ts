@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Fornecedor } from 'src/shared/models/fornecedor.model';
 
@@ -10,7 +11,9 @@ export class FornecedoresService {
 
   private readonly API = 'api/fornecedores';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+      private router: Router
+    ) { }
 
   list() {
     return this.httpClient.get<Fornecedor[]>(this.API)
@@ -18,6 +21,11 @@ export class FornecedoresService {
         first(),
       );
   }
+
+  loadByChave(chave: string) {
+    return this.httpClient.get<Fornecedor>(`${this.API}/${chave}`);
+  }
+
 
   loadById(id: number) {
     return this.httpClient.get<Fornecedor>(`${this.API}/${id}`);

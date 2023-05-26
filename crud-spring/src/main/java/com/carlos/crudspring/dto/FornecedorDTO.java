@@ -16,11 +16,11 @@ public record FornecedorDTO(
         String logradouro, 
         Integer numero, 
         String complemento,
-        String cidade, 
         String bairro, 
+        String cidade, 
         String estado,
-        Date dtnascimento,
-        String email,
         Integer rg,
+        String email,
+        Date dtnascimento,
         Integer fstatus) {
 }

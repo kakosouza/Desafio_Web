@@ -3,7 +3,7 @@
 
   <div class="column-flex mat-elevation-z8">
     <app-fornecedores-list
-      *ngIf="fornecedores$ | async as fornecedores else loading"
+      *ngIf="fornecedores$ | async as fornecedores; else loading"
       [fornecedores]="fornecedores"
       (add)="onAdd()"
       (edit)="onEdit($event)"

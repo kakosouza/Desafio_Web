@@ -45,24 +45,24 @@ public class Fornecedor {
     @Column(length = 50, nullable = true)
     private String complemento; 
 
-    @Column(length = 100, nullable = true)
-    private String cidade;
-
     @Column(length = 50, nullable = true)
     private String bairro;
+
+    @Column(length = 100, nullable = true)
+    private String cidade;
 
     @Column(length = 2, nullable = true)
 	private String estado;
    
-    @Column(length = 8, nullable = true)
-	private Date dtnascimento;
+    @Column(length = 10, nullable = true)
+	private Integer rg;
 
     @Column(length = 20, nullable = true)
 	private String email;
 
+    @Column(length = 8, nullable = true)
+	private Date dtnascimento;
+
     @Column(length = 1, nullable = true)
 	private Integer fstatus;
-
-    @Column(length = 10, nullable = true)
-	private Integer rg;
 }
