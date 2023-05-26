@@ -14,50 +14,49 @@
     </form>
   </mat-card-content>
 
-  <mat-table  [dataSource]="fornecedores" class="mat-elevation-z8">
-      <!-- Checkbox Column -->
-    <ng-container matColumnDef="select">
-      <th mat-header-cell *matHeaderCellDef>
-        <mat-checkbox (change)="$event ? masterToggle() : null"
-                      [checked]="selection.hasValue() && isAllSelected()"
-                      [indeterminate]="selection.hasValue() && !isAllSelected()">
-        </mat-checkbox>
-      </th>
-      <td mat-cell *matCellDef="let row">
-        <mat-checkbox (click)="$event.stopPropagation()"
-                      (change)="$event ? selection.toggle(row) : null"
-                      [checked]="selection.isSelected(row)">
-        </mat-checkbox>
-      </td>
+  <mat-table  [dataSource]="fornecedores$" class="mat-elevation-z8">
+        <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </td>
 
-      <!-- Position Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> Id. </th>
-        <td mat-cell *matCellDef="let fornecedores"> {{fornecedores.id}} </td>
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Id. </th>
+          <td mat-cell *matCellDef="let fornecedores"> {{fornecedores.id}} </td>
+        </ng-container>
+
+        <!-- Cnpj Column -->
+        <ng-container matColumnDef="chave">
+          <th mat-header-cell *matHeaderCellDef> Cnpj/CPF </th>
+          <td mat-cell *matCellDef="let fornecedores"> {{fornecedores.chave}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef> Nome </th>
+          <td mat-cell *matCellDef="let fornecedores"> {{fornecedores.nome}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+            (click)="selection.toggle(row)">
+        </tr>
       </ng-container>
 
-      <!-- Cnpj Column -->
-      <ng-container matColumnDef="chave">
-        <th mat-header-cell *matHeaderCellDef> Cnpj/CPF </th>
-        <td mat-cell *matCellDef="let fornecedores"> {{fornecedores.chave}} </td>
-      </ng-container>
-
-      <!-- Weight Column -->
-      <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef> Nome </th>
-        <td mat-cell *matCellDef="let fornecedores"> {{fornecedores.nome}} </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-          (click)="selection.toggle(row)">
-      </tr>
-    </ng-container>
-
-    <mat-card-actions>
-      <button margin="0 15px" mat-raised-button color="primary" (click)="onSubmit()">Salvar</button>
-      <button margin="0 15px" mat-raised-button (click)="onCancel()">Cancelar</button>
-    </mat-card-actions>
+      <mat-card-actions>
+        <button margin="0 15px" mat-raised-button color="primary" (click)="onSubmit()">Salvar</button>
+        <button margin="0 15px" mat-raised-button (click)="onCancel()">Cancelar</button>
+      </mat-card-actions>
   </mat-table>
-
 </mat-card>

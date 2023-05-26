@@ -56,6 +56,7 @@
       <mat-form-field class="min-width">
         <mat-label>Data de Nascimento</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="dtnascimento" name="dtnascimento">
+        <mat-error *ngIf="form.get('dtnascimento')?.invalid">{{getErrorMessage("dtnascimento")}}</mat-error>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>

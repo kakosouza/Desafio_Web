@@ -1,9 +1,9 @@
 import { Location } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
 import { Empresa } from 'src/shared/models/empresa.model';
 
@@ -11,6 +11,10 @@ import { EmpresasService } from '../services/empresas.service';
 import { Fornecedor } from 'src/shared/models/fornecedor.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
+import { FornecedoresService } from 'src/app/fornecedores/services/fornecedores.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-empresa-ligar',
@@ -19,11 +23,12 @@ import { SelectionModel } from '@angular/cdk/collections';
 })
 export class EmpresaLigarComponent implements OnInit {
 
-  @Input() fornecedores: Fornecedor[] = [];
-
+  fornecedores$!: Observable<Fornecedor[]>;
   displayedColumns: string[] = ['select','chave','nome'];
   dataSource = new MatTableDataSource<Fornecedor>();
   selection = new SelectionModel<Fornecedor>(true, []);
+  servicef: FornecedoresService;
+
 
   formLiga = this.formBuilder.group({
     id: [0],
@@ -31,15 +36,18 @@ export class EmpresaLigarComponent implements OnInit {
     nome: ['']
   });
 
-  frameworks: Fornecedor = new Fornecedor;
-
   constructor(private formBuilder: FormBuilder,
     private service: EmpresasService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private location: Location,
-    private route: ActivatedRoute
-    ) { }
+    private route: ActivatedRoute,
+    private httpClient: HttpClient,
+    private router: Router
+    ) {
+      this.servicef = new FornecedoresService(this.httpClient, this.router);
+      this.fornecedores$ = this.servicef.list();
+    }
 
   ngOnInit() {
     const empresa: Empresa = this.route.snapshot.data['empresa'];
@@ -48,8 +56,18 @@ export class EmpresaLigarComponent implements OnInit {
       cnpj: empresa.cnpj,
       nome: empresa.nome
     });
-
   }
+
+/*  refresh() {
+    this.fornecedores = this.servicef.list()
+      .pipe(
+        catchError(error => {
+          this.onError('Erro ao carregar fornecedores.');
+          return of([])
+        })
+      );
+  }*/
+
 
   onSubmit() {
     this.service.save(this.formLiga.value as Empresa)

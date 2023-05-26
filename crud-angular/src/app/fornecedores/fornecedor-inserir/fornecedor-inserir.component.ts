@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
@@ -50,7 +50,23 @@ export class FornecedorInserirComponent implements OnInit {
       ) { }
 
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      chave: ['', [Validators.required]],
+      nome: ['', [Validators.required]],
+      cep: [''],
+      logradouro: [''],
+      numero: [0, [Validators.required]],
+      complemento: [''],
+      bairro: [''],
+      cidade: [''],
+      estado: ['', [Validators.required]],
+      rg: [0],
+      email: [''],
+      dtnascimento: ['1990-01-01', [Validators.required]],
+      fstatus: [0]
+    });
+
   }
 
 
