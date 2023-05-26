@@ -5,15 +5,23 @@ mat-card {
   align-items: center;
 }
 
-div {
-  width: 100px;
-  height: 100px;
-  display: inline-block;
+form {
+  margin: 0 15px;
+  height: 50px;
+  align-items: left;
 }
 
 button {
   text-align: center;
   margin: 0 15px;
+}
+
+div {
+  text-align: left;
+}
+
+.divTexto {
+  text-align: left;
 }
 
 .full-width {
