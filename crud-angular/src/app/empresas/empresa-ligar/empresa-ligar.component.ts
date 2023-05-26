@@ -9,6 +9,8 @@ import { Empresa } from 'src/shared/models/empresa.model';
 
 import { EmpresasService } from '../services/empresas.service';
 import { Fornecedor } from 'src/shared/models/fornecedor.model';
+import { MatTableDataSource } from '@angular/material/table';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-empresa-ligar',
@@ -19,7 +21,9 @@ export class EmpresaLigarComponent implements OnInit {
 
   @Input() fornecedores: Fornecedor[] = [];
 
-  readonly displayedColumns = ['chave','nome','actions'];
+  displayedColumns: string[] = ['select','chave','nome'];
+  dataSource = new MatTableDataSource<Fornecedor>();
+  selection = new SelectionModel<Fornecedor>(true, []);
 
   formLiga = this.formBuilder.group({
     id: [0],
@@ -68,4 +72,20 @@ export class EmpresaLigarComponent implements OnInit {
      data: 'Erro ao salvar Empresa.'});
   }
 
+  masterToggle() {
+    // if there is a selection then clear that selection
+//    if (this.isSomeSelected()) {
+//      this.selection.clear();
+//    } else {
+      this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+//    }
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
 }
