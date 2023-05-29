@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Empresa } from 'src/shared/models/empresa.model';
 
@@ -13,7 +13,8 @@ export class EmpresasService {
 
 
   constructor(private httpClient: HttpClient,
-      private router: Router
+      private router: Router,
+      private route: ActivatedRoute
     ) { }
 
   list() {
